@@ -1,0 +1,65 @@
+{
+    "R1":{
+        "name":"CE1",
+        "interfaces":{
+            "Loopback0":{
+                "ip address":"1.1.1.1",
+                "mask":"255.255.255.255"
+            },
+            "FastEthernet0/0":{
+                "ip address":null,
+                "shutdown":true,
+                "duplex full":true,
+            },
+            "GigabitEthernet1/0":{
+                "ip address":"192.168.1.2",
+                "mask":"255.255.255.0",
+                "ip ospf":"10",
+                "area":"101",
+                "negotiation auto":true
+            },
+            "GigabitEthernet2/0":{
+                "ip address":"172.16.1.2",
+                "mask":"255.255.255.0",
+                "ip ospf":"10",
+                "area":"101",
+                "negotiation auto":true
+            },
+            "GigabitEthernet3/0":{
+                "ip address":null
+            },
+            "GigabitEthernet4/0":{
+                "ip address":null
+            },
+            "GigabitEthernet5/0":{
+                "ip address":null
+            },
+            "GigabitEthernet6/0":{
+                "ip address":null
+            }
+        },
+        "router ospf":{
+            "id":"10",
+            "router-id":"1.1.1.1"
+        },
+        "router bgp":{
+            "area":"101",
+            "router-id":"1.1.1.1",
+            "log-neighbor-changes":true,
+            "neighbor":"172.16.1.1",
+            "remote-as":"100",
+            "address-family ipv4":{
+                "network":"192.168.1.0",
+                "neighbor":"172.16.1.1",
+                "activate":true
+            },
+            "exit-address-family":true
+        },
+        "ip forward-protocol":"nd",
+        "ip http server":false,
+        "ip http secure-server":false
+    },
+    "R2":{
+        
+    }
+}
