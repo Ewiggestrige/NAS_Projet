@@ -1,0 +1,475 @@
+{
+    "CE1": {
+        "name": "CE1",
+        "number": 1,
+        "neighbors": [
+            "PC1",
+            "PE1"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "1.1.1.1",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "192.168.1.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "172.16.1.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    },
+    "PE1": {
+        "name": "PE1",
+        "number": 2,
+        "neighbors": [
+            "CE1",
+            "P1"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "2.2.2.2",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "172.16.1.2",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "10.149.49.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    },
+    "P1": {
+        "name": "P1",
+        "number": 3,
+        "neighbors": [
+            "PE1",
+            "P2",
+            "P3",
+            "PE5"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "3.3.3.3",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "10.149.49.2",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "10.49.50.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet3/0": {
+                "ip address": "10.49.51.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet4/0": {
+                "ip address": "10.153.49.2",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    },
+    "P2": {
+        "name": "P2",
+        "number": 4,
+        "neighbors": [
+            "P1",
+            "PE2",
+            "PE4"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "4.4.4.4",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "10.49.50.2",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "10.150.50.2",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet3/0": {
+                "ip address": "10.152.50.2",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    },
+    "P3": {
+        "name": "P3",
+        "number": 5,
+        "neighbors": [
+            "P1",
+            "PE3"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "5.5.5.5",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "10.49.51.2",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "10.151.51.2",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    },
+    "PE5": {
+        "name": "PE5",
+        "number": 6,
+        "neighbors": [
+            "P1"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "6.6.6.6",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "10.153.49.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    },
+    "PE2": {
+        "name": "PE2",
+        "number": 7,
+        "neighbors": [
+            "P2",
+            "CE2"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "7.7.7.7",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "10.150.50.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "172.16.2.2",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    },
+    "PE4": {
+        "name": "PE4",
+        "number": 8,
+        "neighbors": [
+            "P2",
+            "CE4"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "8.8.8.8",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "10.152.50.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "172.16.4.2",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    },
+    "PE3": {
+        "name": "PE3",
+        "number": 9,
+        "neighbors": [
+            "P3",
+            "CE3"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "9.9.9.9",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "10.151.51.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "172.16.3.2",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    },
+    "CE2": {
+        "name": "CE2",
+        "number": 10,
+        "neighbors": [
+            "PE2",
+            "PC2"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "10.10.10.10",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "192.168.2.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "172.16.2.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    },
+    "CE3": {
+        "name": "CE3",
+        "number": 11,
+        "neighbors": [
+            "PE3",
+            "PC3"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "11.11.11.11",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "192.168.3.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "172.16.3.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    },
+    "CE4": {
+        "name": "CE4",
+        "number": 12,
+        "neighbors": [
+            "PE4",
+            "PC4"
+        ],
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "12.12.12.12",
+                "mask": "255.255.255.255",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "192.168.4.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "172.16.4.1",
+                "mask": "255.255.255.0",
+                "ip ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {},
+        "ip forward-protocol": "not defined",
+        "ip http server": false,
+        "ip http secure-server": false
+    }
+}{
+    "PC1": {
+        "pcname": "PC1",
+        "ip": "192.168.1.1",
+        "gateway": "192.168.1.1",
+        "mask": "255.255.255.0"
+    },
+    "PC2": {
+        "pcname": "PC2",
+        "ip": "192.168.2.2",
+        "gateway": "192.168.2.1",
+        "mask": "255.255.255.0"
+    },
+    "PC3": {
+        "pcname": "PC3",
+        "ip": "192.168.3.3",
+        "gateway": "192.168.3.1",
+        "mask": "255.255.255.0"
+    },
+    "PC4": {
+        "pcname": "PC4",
+        "ip": "192.168.4.4",
+        "gateway": "192.168.4.1",
+        "mask": "255.255.255.0"
+    }
+}
