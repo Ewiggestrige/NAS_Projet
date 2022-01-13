@@ -40,7 +40,12 @@ fr.close()
 for key in routeurs.keys():
 	routeurs[key] = define_port(routeurs[key])
 	routeurs[key] = define_ospf(routeurs[key])
+routeurs = define_bgp(routeurs)
+
+for key in routeurs.keys():
 	routeurs[key].interfaces_to_json()
+	routeurs[key].bgp_to_json()
+	routeurs[key].route_map_to_json()
 	routeurs[key].to_json()
 	routeurs[key] = routeurs[key].json
 for key in clients.keys():

@@ -81,5 +81,58 @@ def define_ospf(noeud):
 		else:
 			noeud.interfaces[intf].area = 0
 	return noeud
-	
 
+def define_bgp(noeuds):
+	for noeud in noeuds.keys():
+		if noeuds[noeud].name[:2] == 'CE':
+			bgp = BGP()
+			bgp.area = int(noeuds[noeud].name[2:])
+			num = noeuds[noeud].number
+			bgp.router_id = '%d.%d.%d.%d' %(num,num,num,num)
+			bgp.add_neighbor('172.168.%s.2' %noeuds[noeud].name[2:], '%d' %int(noeuds[noeud].name[2:]), False)
+			bgp.add_family('192.168.%s.0' %noeuds[noeud].name[2:], False, None)
+			bgp.add_family('172.168.%s.2' %noeuds[noeud].name[2:], True, None)
+			noeuds[noeud].router_bgp = bgp
+		elif noeuds[noeud].name[:2] == 'PE':
+			bgp = BGP()
+			bgp.area = 0
+			num = noeuds[noeud].number
+			bgp.router_id = '%d.%d.%d.%d' %(num,num,num,num)
+			for n in noeuds.keys():
+				if noeuds[n].name[:2] == 'PE' and noeuds[n].name != noeuds[noeud].name:
+					num = noeuds[n].number
+					bgp.add_neighbor('%d.%d.%d.%d' %(num,num,num,num), 0, True)
+					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, None)
+				elif noeuds[n].name[:1] == 'P' and noeuds[n].name != noeuds[noeud].name:
+					num = noeuds[n].number
+					bgp.add_neighbor('%d.%d.%d.%d' %(num,num,num,num), 0, True)
+					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, None)
+				elif noeuds[n].name != noeuds[noeud].name:
+					num = noeuds[n].name[2:]
+					bgp.add_neighbor('172.168.%s.1' %noeuds[noeud].name[2:], '%d' %int(noeuds[noeud].name[2:]), False)
+					routemap = RouteMap('RM')
+					access_list = {}
+					access_list['name'] = 1
+					access_list['permit'] = []
+					access_list['permit'].append('192.168.%s.0 0.0.0.255' %noeuds[noeud].name[2:])
+					noeuds[noeud].access_list.append(access_list)
+					routemap.process = 10
+					routemap.access_list = access_list['name']
+					if (int(noeuds[noeud].name[2:])%2 == 0):
+						routemap.local_preference = 150
+					else:
+						routemap.local_preference = 50
+					noeuds[noeud].route_map.append(routemap)
+					bgp.add_family('172.168.%s.0' %noeuds[noeud].name[2:], False, routemap.name)
+			noeuds[noeud].router_bgp = bgp
+		else:
+			bgp = BGP()
+			bgp.area = 0
+			for n in noeuds.keys():
+				if noeuds[n].name[:1] == 'P' and noeuds[n].name != noeuds[noeud].name:
+					num = noeuds[n].number
+					bgp.add_neighbor('%d.%d.%d.%d' %(num,num,num,num), 0, True)
+					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, None)
+			noeuds[noeud].router_bgp = bgp
+	return noeuds
+			
