@@ -10,26 +10,29 @@
             "Loopback0": {
                 "ip address": "1.1.1.1",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 1,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
                 "ip address": "192.168.1.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 1,
+                "negotiation auto": true
             },
             "GigabitEthernet2/0": {
                 "ip address": "172.16.1.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 1,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 1
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -46,26 +49,29 @@
             "Loopback0": {
                 "ip address": "2.2.2.2",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 0,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
                 "ip address": "172.16.1.2",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             },
             "GigabitEthernet2/0": {
-                "ip address": "10.149.49.1",
+                "ip address": "10.101.1.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 2
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -84,40 +90,43 @@
             "Loopback0": {
                 "ip address": "3.3.3.3",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 0,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
-                "ip address": "10.149.49.2",
+                "ip address": "10.101.1.2",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             },
             "GigabitEthernet2/0": {
-                "ip address": "10.49.50.1",
+                "ip address": "10.1.2.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             },
             "GigabitEthernet3/0": {
-                "ip address": "10.49.51.1",
+                "ip address": "10.1.3.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             },
             "GigabitEthernet4/0": {
-                "ip address": "10.153.49.2",
+                "ip address": "10.105.1.2",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 3
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -135,33 +144,36 @@
             "Loopback0": {
                 "ip address": "4.4.4.4",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 0,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
-                "ip address": "10.49.50.2",
+                "ip address": "10.1.2.2",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             },
             "GigabitEthernet2/0": {
-                "ip address": "10.150.50.2",
+                "ip address": "10.102.2.2",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             },
             "GigabitEthernet3/0": {
-                "ip address": "10.152.50.2",
+                "ip address": "10.104.2.2",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 4
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -178,26 +190,29 @@
             "Loopback0": {
                 "ip address": "5.5.5.5",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 0,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
-                "ip address": "10.49.51.2",
+                "ip address": "10.1.3.2",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             },
             "GigabitEthernet2/0": {
-                "ip address": "10.151.51.2",
+                "ip address": "10.103.3.2",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 5
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -213,19 +228,22 @@
             "Loopback0": {
                 "ip address": "6.6.6.6",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 0,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
-                "ip address": "10.153.49.1",
+                "ip address": "10.105.1.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 6
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -242,26 +260,29 @@
             "Loopback0": {
                 "ip address": "7.7.7.7",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 0,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
-                "ip address": "10.150.50.1",
+                "ip address": "10.102.2.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             },
             "GigabitEthernet2/0": {
                 "ip address": "172.16.2.2",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 7
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -278,26 +299,29 @@
             "Loopback0": {
                 "ip address": "8.8.8.8",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 0,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
-                "ip address": "10.152.50.1",
+                "ip address": "10.104.2.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             },
             "GigabitEthernet2/0": {
                 "ip address": "172.16.4.2",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 8
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -314,26 +338,29 @@
             "Loopback0": {
                 "ip address": "9.9.9.9",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 0,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
-                "ip address": "10.151.51.1",
+                "ip address": "10.103.3.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             },
             "GigabitEthernet2/0": {
                 "ip address": "172.16.3.2",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 9
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -350,26 +377,29 @@
             "Loopback0": {
                 "ip address": "10.10.10.10",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 2,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
                 "ip address": "192.168.2.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 2,
+                "negotiation auto": true
             },
             "GigabitEthernet2/0": {
                 "ip address": "172.16.2.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 2,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 10
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -386,26 +416,29 @@
             "Loopback0": {
                 "ip address": "11.11.11.11",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 3,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
                 "ip address": "192.168.3.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 3,
+                "negotiation auto": true
             },
             "GigabitEthernet2/0": {
                 "ip address": "172.16.3.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 3,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 11
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -422,26 +455,29 @@
             "Loopback0": {
                 "ip address": "12.12.12.12",
                 "mask": "255.255.255.255",
-                "ip ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 4,
                 "negotiation auto": "not defined"
             },
             "GigabitEthernet1/0": {
                 "ip address": "192.168.4.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 4,
+                "negotiation auto": true
             },
             "GigabitEthernet2/0": {
                 "ip address": "172.16.4.1",
                 "mask": "255.255.255.0",
-                "ip ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined"
+                "ospf": 10,
+                "area": 4,
+                "negotiation auto": true
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": 12
+        },
         "router bgp": {},
         "ip forward-protocol": "not defined",
         "ip http server": false,
@@ -450,24 +486,28 @@
 }{
     "PC1": {
         "pcname": "PC1",
+        "router": "CE1",
         "ip": "192.168.1.1",
         "gateway": "192.168.1.1",
         "mask": "255.255.255.0"
     },
     "PC2": {
         "pcname": "PC2",
+        "router": "CE2",
         "ip": "192.168.2.2",
         "gateway": "192.168.2.1",
         "mask": "255.255.255.0"
     },
     "PC3": {
         "pcname": "PC3",
+        "router": "CE3",
         "ip": "192.168.3.3",
         "gateway": "192.168.3.1",
         "mask": "255.255.255.0"
     },
     "PC4": {
         "pcname": "PC4",
+        "router": "CE4",
         "ip": "192.168.4.4",
         "gateway": "192.168.4.1",
         "mask": "255.255.255.0"

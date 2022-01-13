@@ -39,6 +39,7 @@ fr.close()
 
 for key in routeurs.keys():
 	routeurs[key] = define_port(routeurs[key])
+	routeurs[key] = define_ospf(routeurs[key])
 	routeurs[key].interfaces_to_json()
 	routeurs[key].to_json()
 	routeurs[key] = routeurs[key].json

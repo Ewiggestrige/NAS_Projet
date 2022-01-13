@@ -18,6 +18,7 @@ def define_port(noeud):
 		n_port = n_port + 1
 		port.ip_address = '192.168.%s.1' % noeud.name[2:]
 		port.mask = '255.255.255.0'
+		port.negotiation_auto = True
 		noeud.interfaces[port.port] = port
 
 		#Between CE and PE
@@ -25,19 +26,21 @@ def define_port(noeud):
 		n_port = n_port + 1
 		port.ip_address = '172.16.%s.1' % noeud.name[2:]
 		port.mask = '255.255.255.0'
+		port.negotiation_auto = True
 		noeud.interfaces[port.port] = port
+		
 	else:
 		for neighbor in noeud.neighbors:
 			port = Interface('GigabitEthernet%d/0'%n_port)
 			n_port = n_port+1
 			if noeud.name[:2] == 'PE' or noeud.name[:2] == 'CE':
-				num_noeud = ord(noeud.name[2:])
+				num_noeud = int(noeud.name[2:])
 			else:
-				num_noeud = ord(noeud.name[1:])
+				num_noeud = int(noeud.name[1:])
 			if neighbor[:2] == 'PE' or neighbor[:2] == 'CE':
-				num_neighbor = ord(neighbor[2:])
+				num_neighbor = int(neighbor[2:])
 			else:
-				num_neighbor = ord(neighbor[1:])
+				num_neighbor = int(neighbor[1:])
 
 			if neighbor[:2] == 'CE':
 				port.ip_address = '172.16.%s.2' % neighbor[2:]
@@ -56,6 +59,7 @@ def define_port(noeud):
 				else:
 					port.ip_address = '10.%d.%d.2' %(num_neighbor,num_noeud)
 			port.mask = '255.255.255.0'
+			port.negotiation_auto = True
 			noeud.interfaces[port.port] = port
 	return noeud
 
@@ -67,4 +71,15 @@ def define_pc(client):
 	client.mask = '255.255.255.0'
 	return client		
 		
-			
+def define_ospf(noeud):
+	#define ospf process
+	noeud.set_router_ospf(10,noeud.number)
+	for intf in noeud.interfaces.keys():
+		noeud.interfaces[intf].ospf = 10
+		if noeud.name[:2] == 'CE':
+			noeud.interfaces[intf].area = int(noeud.name[2:])
+		else:
+			noeud.interfaces[intf].area = 0
+	return noeud
+	
+

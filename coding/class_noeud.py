@@ -1,7 +1,7 @@
 class Interface(object):
          ip_address = 'not defined'
          mask = 'not defined'
-         ip_ospf = 'not defined'
+         ospf = 'not defined'
          area = 'not defined'
          negotiation_auto = 'not defined'
  
@@ -11,13 +11,13 @@ class Interface(object):
          def to_json(self):
                  self.json['ip address'] = self.ip_address
                  self.json['mask'] = self.mask
-                 self.json['ip ospf'] = self.ip_ospf
+                 self.json['ospf'] = self.ospf
                  self.json['area'] = self.area
                  self.json['negotiation auto'] = self.negotiation_auto
          def to_python(self,info):
                  self.ip_address = info['ip address']
                  self.mask = info['mask']
-                 self.ip_ospf = info['ip ospf']
+                 self.ip_ospf = info['ospf']
                  self.area = info['area']
                  self.negotiation_auto = into['negotiation auto']
 class Routeur(object):
@@ -43,8 +43,8 @@ class Routeur(object):
                          new_interface = Interface(interface)
                          new_interface.to_python(interfaces[interface].json)
                          interfaces[interface] = new_interface
-         def set_router_ospf(self,id,router_id):
-                 self.router_ospf['id'] = id
+         def set_router_ospf(self,process,router_id):
+                 self.router_ospf['process'] = process
                  self.router_ospf['router id'] = router_id
          def get_router_bgp(self):
                  print(self.router_bgp) # area,router-id, log-neighbor-changes, neighbor, remote-as, address-family{network,neighbor,activate},exit-address-family
@@ -79,12 +79,14 @@ class Client(object):
                  self.json = {}
         def to_json(self):
                  self.json['pcname'] = self.name
+                 self.json['router'] = self.router
                  self.json['ip'] = self.ip
                  self.json['gateway'] = self.gateway
                  self.json['mask'] = self.mask
         def to_python(self, info):
                  self.name = info['pcname']
                  self.ip = info['ip']
+                 self.router = info['router']
                  self.gateway = info['gateway']
                  self.mask = info['mask']
             
