@@ -98,6 +98,7 @@ def define_bgp(noeuds):
 			bgp.area = 0
 			num = noeuds[noeud].number
 			bgp.router_id = '%d.%d.%d.%d' %(num,num,num,num)
+			
 			for n in noeuds.keys():
 				if noeuds[n].name[:2] == 'PE' and noeuds[n].name != noeuds[noeud].name:
 					num = noeuds[n].number
@@ -107,7 +108,7 @@ def define_bgp(noeuds):
 					num = noeuds[n].number
 					bgp.add_neighbor('%d.%d.%d.%d' %(num,num,num,num), 0, True)
 					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, None)
-				elif noeuds[n].name != noeuds[noeud].name:
+				elif noeuds[noeud].name[2:] == noeuds[n].name[2:] and noeuds[n].name != noeuds[noeud].name:
 					num = noeuds[n].name[2:]
 					bgp.add_neighbor('172.168.%s.1' %noeuds[noeud].name[2:], '%d' %int(noeuds[noeud].name[2:]), False)
 					routemap = RouteMap('RM')
