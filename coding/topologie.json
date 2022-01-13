@@ -137,21 +137,6 @@
                     "ip": "9.9.9.9",
                     "area": 0,
                     "loopback": true
-                },
-                {
-                    "ip": "172.168.1.1",
-                    "area": "1",
-                    "loopback": false
-                },
-                {
-                    "ip": "172.168.1.1",
-                    "area": "1",
-                    "loopback": false
-                },
-                {
-                    "ip": "172.168.1.1",
-                    "area": "1",
-                    "loopback": false
                 }
             ],
             "address_family": [
@@ -194,21 +179,6 @@
                     "ip": "9.9.9.9",
                     "activate": true,
                     "route map": null
-                },
-                {
-                    "ip": "172.168.1.0",
-                    "activate": false,
-                    "route map": "RM"
-                },
-                {
-                    "ip": "172.168.1.0",
-                    "activate": false,
-                    "route map": "RM"
-                },
-                {
-                    "ip": "172.168.1.0",
-                    "activate": false,
-                    "route map": "RM"
                 }
             ],
             "area": 0,
@@ -220,45 +190,9 @@
                 "permit": [
                     "192.168.1.0 0.0.0.255"
                 ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.1.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.1.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.1.0 0.0.0.255"
-                ]
             }
         ],
         "route map": [
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 50
-            },
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 50
-            },
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 50
-            },
             {
                 "name": "RM",
                 "process": 10,
@@ -677,11 +611,6 @@
         "router bgp": {
             "neighbors": [
                 {
-                    "ip": "172.168.5.1",
-                    "area": "5",
-                    "loopback": false
-                },
-                {
                     "ip": "2.2.2.2",
                     "area": 0,
                     "loopback": true
@@ -715,30 +644,10 @@
                     "ip": "9.9.9.9",
                     "area": 0,
                     "loopback": true
-                },
-                {
-                    "ip": "172.168.5.1",
-                    "area": "5",
-                    "loopback": false
-                },
-                {
-                    "ip": "172.168.5.1",
-                    "area": "5",
-                    "loopback": false
-                },
-                {
-                    "ip": "172.168.5.1",
-                    "area": "5",
-                    "loopback": false
                 }
             ],
             "address_family": [
                 {
-                    "ip": "172.168.5.0",
-                    "activate": false,
-                    "route map": "RM"
-                },
-                {
                     "ip": "2.2.2.2",
                     "activate": true,
                     "route map": null
@@ -772,78 +681,13 @@
                     "ip": "9.9.9.9",
                     "activate": true,
                     "route map": null
-                },
-                {
-                    "ip": "172.168.5.0",
-                    "activate": false,
-                    "route map": "RM"
-                },
-                {
-                    "ip": "172.168.5.0",
-                    "activate": false,
-                    "route map": "RM"
-                },
-                {
-                    "ip": "172.168.5.0",
-                    "activate": false,
-                    "route map": "RM"
                 }
             ],
             "area": 0,
             "router_id": "6.6.6.6"
         },
-        "access list": [
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.5.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.5.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.5.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.5.0 0.0.0.255"
-                ]
-            }
-        ],
-        "route map": [
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 50
-            },
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 50
-            },
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 50
-            },
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 50
-            }
-        ],
+        "access list": [],
+        "route map": [],
         "ip forward-protocol": "not defined",
         "ip http server": false,
         "ip http secure-server": false
@@ -885,11 +729,6 @@
         "router bgp": {
             "neighbors": [
                 {
-                    "ip": "172.168.2.1",
-                    "area": "2",
-                    "loopback": false
-                },
-                {
                     "ip": "2.2.2.2",
                     "area": 0,
                     "loopback": true
@@ -923,16 +762,6 @@
                     "ip": "9.9.9.9",
                     "area": 0,
                     "loopback": true
-                },
-                {
-                    "ip": "172.168.2.1",
-                    "area": "2",
-                    "loopback": false
-                },
-                {
-                    "ip": "172.168.2.1",
-                    "area": "2",
-                    "loopback": false
                 },
                 {
                     "ip": "172.168.2.1",
@@ -942,11 +771,6 @@
             ],
             "address_family": [
                 {
-                    "ip": "172.168.2.0",
-                    "activate": false,
-                    "route map": "RM"
-                },
-                {
                     "ip": "2.2.2.2",
                     "activate": true,
                     "route map": null
@@ -980,16 +804,6 @@
                     "ip": "9.9.9.9",
                     "activate": true,
                     "route map": null
-                },
-                {
-                    "ip": "172.168.2.0",
-                    "activate": false,
-                    "route map": "RM"
-                },
-                {
-                    "ip": "172.168.2.0",
-                    "activate": false,
-                    "route map": "RM"
                 },
                 {
                     "ip": "172.168.2.0",
@@ -1006,45 +820,9 @@
                 "permit": [
                     "192.168.2.0 0.0.0.255"
                 ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.2.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.2.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.2.0 0.0.0.255"
-                ]
             }
         ],
         "route map": [
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 150
-            },
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 150
-            },
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 150
-            },
             {
                 "name": "RM",
                 "process": 10,
@@ -1093,11 +871,6 @@
         "router bgp": {
             "neighbors": [
                 {
-                    "ip": "172.168.4.1",
-                    "area": "4",
-                    "loopback": false
-                },
-                {
                     "ip": "2.2.2.2",
                     "area": 0,
                     "loopback": true
@@ -1131,16 +904,6 @@
                     "ip": "9.9.9.9",
                     "area": 0,
                     "loopback": true
-                },
-                {
-                    "ip": "172.168.4.1",
-                    "area": "4",
-                    "loopback": false
-                },
-                {
-                    "ip": "172.168.4.1",
-                    "area": "4",
-                    "loopback": false
                 },
                 {
                     "ip": "172.168.4.1",
@@ -1150,11 +913,6 @@
             ],
             "address_family": [
                 {
-                    "ip": "172.168.4.0",
-                    "activate": false,
-                    "route map": "RM"
-                },
-                {
                     "ip": "2.2.2.2",
                     "activate": true,
                     "route map": null
@@ -1188,16 +946,6 @@
                     "ip": "9.9.9.9",
                     "activate": true,
                     "route map": null
-                },
-                {
-                    "ip": "172.168.4.0",
-                    "activate": false,
-                    "route map": "RM"
-                },
-                {
-                    "ip": "172.168.4.0",
-                    "activate": false,
-                    "route map": "RM"
                 },
                 {
                     "ip": "172.168.4.0",
@@ -1214,45 +962,9 @@
                 "permit": [
                     "192.168.4.0 0.0.0.255"
                 ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.4.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.4.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.4.0 0.0.0.255"
-                ]
             }
         ],
         "route map": [
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 150
-            },
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 150
-            },
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 150
-            },
             {
                 "name": "RM",
                 "process": 10,
@@ -1301,11 +1013,6 @@
         "router bgp": {
             "neighbors": [
                 {
-                    "ip": "172.168.3.1",
-                    "area": "3",
-                    "loopback": false
-                },
-                {
                     "ip": "2.2.2.2",
                     "area": 0,
                     "loopback": true
@@ -1339,16 +1046,6 @@
                     "ip": "8.8.8.8",
                     "area": 0,
                     "loopback": true
-                },
-                {
-                    "ip": "172.168.3.1",
-                    "area": "3",
-                    "loopback": false
-                },
-                {
-                    "ip": "172.168.3.1",
-                    "area": "3",
-                    "loopback": false
                 },
                 {
                     "ip": "172.168.3.1",
@@ -1358,11 +1055,6 @@
             ],
             "address_family": [
                 {
-                    "ip": "172.168.3.0",
-                    "activate": false,
-                    "route map": "RM"
-                },
-                {
                     "ip": "2.2.2.2",
                     "activate": true,
                     "route map": null
@@ -1396,16 +1088,6 @@
                     "ip": "8.8.8.8",
                     "activate": true,
                     "route map": null
-                },
-                {
-                    "ip": "172.168.3.0",
-                    "activate": false,
-                    "route map": "RM"
-                },
-                {
-                    "ip": "172.168.3.0",
-                    "activate": false,
-                    "route map": "RM"
                 },
                 {
                     "ip": "172.168.3.0",
@@ -1422,45 +1104,9 @@
                 "permit": [
                     "192.168.3.0 0.0.0.255"
                 ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.3.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.3.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 1,
-                "permit": [
-                    "192.168.3.0 0.0.0.255"
-                ]
             }
         ],
         "route map": [
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 50
-            },
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 50
-            },
-            {
-                "name": "RM",
-                "process": 10,
-                "access-list": 1,
-                "local_preference": 50
-            },
             {
                 "name": "RM",
                 "process": 10,
