@@ -43,6 +43,7 @@ for key in routeurs.keys():
 routeurs = define_bgp(routeurs)
 
 for key in routeurs.keys():
+	routeurs[key] = define_mpls(routeurs[key])
 	routeurs[key].interfaces_to_json()
 	routeurs[key].bgp_to_json()
 	routeurs[key].route_map_to_json()

@@ -4,6 +4,7 @@ class Interface(object):
          ospf = 'not defined'
          area = 'not defined'
          negotiation_auto = 'not defined'
+         mpls = 'not defined'
  
          def __init__(self,port):
                  self.port = port
@@ -14,12 +15,14 @@ class Interface(object):
                  self.json['ospf'] = self.ospf
                  self.json['area'] = self.area
                  self.json['negotiation auto'] = self.negotiation_auto
+                 self.json['mpls'] = self.mpls
          def to_python(self,info):
                  self.ip_address = info['ip address']
                  self.mask = info['mask']
                  self.ip_ospf = info['ospf']
                  self.area = info['area']
-                 self.negotiation_auto = into['negotiation auto']
+                 self.negotiation_auto = info['negotiation auto']
+                 self.mpls = info['mpls']
                  
 class BGP(object):
 	area = 'not defined'

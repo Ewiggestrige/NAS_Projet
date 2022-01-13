@@ -136,4 +136,11 @@ def define_bgp(noeuds):
 					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, None)
 			noeuds[noeud].router_bgp = bgp
 	return noeuds
+
+def define_mpls(noeud):
+	if noeud.name[:1] == 'P':
+		for interface in noeud.interfaces.keys():
+			if noeud.interfaces[interface].ip_address[:3] == '10.':
+				noeud.interfaces[interface].mpls = 'ip'
+	return noeud
 			
