@@ -65,10 +65,12 @@
         "number": 2,
         "neighbors": [
             "CE1",
+            "CE5",
             "P1"
         ],
         "connect type": {
-            "CE1": "peer"
+            "CE1": "peer",
+            "CE5": "provider"
         },
         "interfaces": {
             "Loopback0": {
@@ -88,6 +90,14 @@
                 "mpls": "not defined"
             },
             "GigabitEthernet2/0": {
+                "ip address": "172.168.5.2",
+                "mask": "255.255.255.0",
+                "ospf": 10,
+                "area": 0,
+                "negotiation auto": true,
+                "mpls": "not defined"
+            },
+            "GigabitEthernet3/0": {
                 "ip address": "10.101.1.1",
                 "mask": "255.255.255.0",
                 "ospf": 10,
@@ -100,7 +110,8 @@
             "process": 10,
             "router id": "2.2.2.2",
             "passive": [
-                "GigabitEthernet1/0"
+                "GigabitEthernet1/0",
+                "GigabitEthernet2/0"
             ]
         },
         "router bgp": {
@@ -111,9 +122,9 @@
                     "loopback": false
                 },
                 {
-                    "ip": "3.3.3.3",
-                    "area": 100,
-                    "loopback": true
+                    "ip": "172.168.1.1",
+                    "area": "101",
+                    "loopback": false
                 },
                 {
                     "ip": "4.4.4.4",
@@ -142,6 +153,11 @@
                 },
                 {
                     "ip": "9.9.9.9",
+                    "area": 100,
+                    "loopback": true
+                },
+                {
+                    "ip": "10.10.10.10",
                     "area": 100,
                     "loopback": true
                 }
@@ -150,12 +166,12 @@
                 {
                     "ip": "172.168.1.0",
                     "activate": false,
-                    "route map": "RM"
+                    "route map": "RM_CE1"
                 },
                 {
-                    "ip": "3.3.3.3",
-                    "activate": true,
-                    "route map": null
+                    "ip": "172.168.1.0",
+                    "activate": false,
+                    "route map": "RM_CE5"
                 },
                 {
                     "ip": "4.4.4.4",
@@ -184,6 +200,11 @@
                 },
                 {
                     "ip": "9.9.9.9",
+                    "activate": true,
+                    "route map": null
+                },
+                {
+                    "ip": "10.10.10.10",
                     "activate": true,
                     "route map": null
                 }
@@ -197,20 +218,92 @@
                 "permit": [
                     "192.168.1.0 0.0.0.255"
                 ]
+            },
+            {
+                "name": 1,
+                "permit": [
+                    "192.168.1.0 0.0.0.255"
+                ]
             }
         ],
         "route map": [
             {
-                "name": "RM",
+                "name": "RM_CE1",
                 "process": 10,
                 "access-list": 1,
                 "local_preference": 100
+            },
+            {
+                "name": "RM_CE5",
+                "process": 10,
+                "access-list": 1,
+                "local_preference": 50
             }
         ]
     },
+    "CE5": {
+        "name": "CE5",
+        "number": 3,
+        "neighbors": [
+            "PE1"
+        ],
+        "connect type": {},
+        "interfaces": {
+            "Loopback0": {
+                "ip address": "3.3.3.3",
+                "mask": "255.255.255.255",
+                "ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": "not defined",
+                "mpls": "not defined"
+            },
+            "GigabitEthernet1/0": {
+                "ip address": "192.168.5.1",
+                "mask": "255.255.255.0",
+                "ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": true,
+                "mpls": "not defined"
+            },
+            "GigabitEthernet2/0": {
+                "ip address": "172.16.5.1",
+                "mask": "255.255.255.0",
+                "ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": true,
+                "mpls": "not defined"
+            }
+        },
+        "router ospf": {},
+        "router bgp": {
+            "neighbors": [
+                {
+                    "ip": "172.168.5.2",
+                    "area": "5",
+                    "loopback": false
+                }
+            ],
+            "address_family": [
+                {
+                    "ip": "192.168.5.0",
+                    "activate": false,
+                    "route map": null
+                },
+                {
+                    "ip": "172.168.5.2",
+                    "activate": true,
+                    "route map": null
+                }
+            ],
+            "area": "105",
+            "router_id": "3.3.3.3"
+        },
+        "access list": [],
+        "route map": []
+    },
     "P1": {
         "name": "P1",
-        "number": 3,
+        "number": 4,
         "neighbors": [
             "PE1",
             "P2",
@@ -220,7 +313,7 @@
         "connect type": {},
         "interfaces": {
             "Loopback0": {
-                "ip address": "3.3.3.3",
+                "ip address": "4.4.4.4",
                 "mask": "255.255.255.255",
                 "ospf": 10,
                 "area": 0,
@@ -262,18 +355,13 @@
         },
         "router ospf": {
             "process": 10,
-            "router id": "3.3.3.3",
+            "router id": "4.4.4.4",
             "passive": []
         },
         "router bgp": {
             "neighbors": [
                 {
                     "ip": "2.2.2.2",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "4.4.4.4",
                     "area": 100,
                     "loopback": true
                 },
@@ -301,6 +389,11 @@
                     "ip": "9.9.9.9",
                     "area": 100,
                     "loopback": true
+                },
+                {
+                    "ip": "10.10.10.10",
+                    "area": 100,
+                    "loopback": true
                 }
             ],
             "address_family": [],
@@ -312,7 +405,7 @@
     },
     "P2": {
         "name": "P2",
-        "number": 4,
+        "number": 5,
         "neighbors": [
             "P1",
             "PE2",
@@ -321,7 +414,7 @@
         "connect type": {},
         "interfaces": {
             "Loopback0": {
-                "ip address": "4.4.4.4",
+                "ip address": "5.5.5.5",
                 "mask": "255.255.255.255",
                 "ospf": 10,
                 "area": 0,
@@ -355,7 +448,7 @@
         },
         "router ospf": {
             "process": 10,
-            "router id": "4.4.4.4",
+            "router id": "5.5.5.5",
             "passive": []
         },
         "router bgp": {
@@ -366,12 +459,7 @@
                     "loopback": true
                 },
                 {
-                    "ip": "3.3.3.3",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "5.5.5.5",
+                    "ip": "4.4.4.4",
                     "area": 100,
                     "loopback": true
                 },
@@ -394,6 +482,11 @@
                     "ip": "9.9.9.9",
                     "area": 100,
                     "loopback": true
+                },
+                {
+                    "ip": "10.10.10.10",
+                    "area": 100,
+                    "loopback": true
                 }
             ],
             "address_family": [],
@@ -405,7 +498,7 @@
     },
     "P3": {
         "name": "P3",
-        "number": 5,
+        "number": 6,
         "neighbors": [
             "P1",
             "PE3"
@@ -413,7 +506,7 @@
         "connect type": {},
         "interfaces": {
             "Loopback0": {
-                "ip address": "5.5.5.5",
+                "ip address": "6.6.6.6",
                 "mask": "255.255.255.255",
                 "ospf": 10,
                 "area": 0,
@@ -439,7 +532,7 @@
         },
         "router ospf": {
             "process": 10,
-            "router id": "5.5.5.5",
+            "router id": "6.6.6.6",
             "passive": []
         },
         "router bgp": {
@@ -450,17 +543,12 @@
                     "loopback": true
                 },
                 {
-                    "ip": "3.3.3.3",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
                     "ip": "4.4.4.4",
                     "area": 100,
                     "loopback": true
                 },
                 {
-                    "ip": "6.6.6.6",
+                    "ip": "5.5.5.5",
                     "area": 100,
                     "loopback": true
                 },
@@ -478,6 +566,11 @@
                     "ip": "9.9.9.9",
                     "area": 100,
                     "loopback": true
+                },
+                {
+                    "ip": "10.10.10.10",
+                    "area": 100,
+                    "loopback": true
                 }
             ],
             "address_family": [],
@@ -489,14 +582,14 @@
     },
     "PE5": {
         "name": "PE5",
-        "number": 6,
+        "number": 7,
         "neighbors": [
             "P1"
         ],
         "connect type": {},
         "interfaces": {
             "Loopback0": {
-                "ip address": "6.6.6.6",
+                "ip address": "7.7.7.7",
                 "mask": "255.255.255.255",
                 "ospf": 10,
                 "area": 0,
@@ -514,18 +607,13 @@
         },
         "router ospf": {
             "process": 10,
-            "router id": "6.6.6.6",
+            "router id": "7.7.7.7",
             "passive": []
         },
         "router bgp": {
             "neighbors": [
                 {
                     "ip": "2.2.2.2",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "3.3.3.3",
                     "area": 100,
                     "loopback": true
                 },
@@ -540,7 +628,7 @@
                     "loopback": true
                 },
                 {
-                    "ip": "7.7.7.7",
+                    "ip": "6.6.6.6",
                     "area": 100,
                     "loopback": true
                 },
@@ -551,6 +639,11 @@
                 },
                 {
                     "ip": "9.9.9.9",
+                    "area": 100,
+                    "loopback": true
+                },
+                {
+                    "ip": "10.10.10.10",
                     "area": 100,
                     "loopback": true
                 }
@@ -562,11 +655,6 @@
                     "route map": null
                 },
                 {
-                    "ip": "3.3.3.3",
-                    "activate": true,
-                    "route map": null
-                },
-                {
                     "ip": "4.4.4.4",
                     "activate": true,
                     "route map": null
@@ -577,7 +665,7 @@
                     "route map": null
                 },
                 {
-                    "ip": "7.7.7.7",
+                    "ip": "6.6.6.6",
                     "activate": true,
                     "route map": null
                 },
@@ -590,17 +678,22 @@
                     "ip": "9.9.9.9",
                     "activate": true,
                     "route map": null
+                },
+                {
+                    "ip": "10.10.10.10",
+                    "activate": true,
+                    "route map": null
                 }
             ],
             "area": "100",
-            "router_id": "6.6.6.6"
+            "router_id": "7.7.7.7"
         },
         "access list": [],
         "route map": []
     },
     "PE2": {
         "name": "PE2",
-        "number": 7,
+        "number": 8,
         "neighbors": [
             "P2",
             "CE2"
@@ -610,7 +703,7 @@
         },
         "interfaces": {
             "Loopback0": {
-                "ip address": "7.7.7.7",
+                "ip address": "8.8.8.8",
                 "mask": "255.255.255.255",
                 "ospf": 10,
                 "area": 0,
@@ -636,7 +729,7 @@
         },
         "router ospf": {
             "process": 10,
-            "router id": "7.7.7.7",
+            "router id": "8.8.8.8",
             "passive": [
                 "GigabitEthernet2/0"
             ]
@@ -645,11 +738,6 @@
             "neighbors": [
                 {
                     "ip": "2.2.2.2",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "3.3.3.3",
                     "area": 100,
                     "loopback": true
                 },
@@ -669,12 +757,17 @@
                     "loopback": true
                 },
                 {
-                    "ip": "8.8.8.8",
+                    "ip": "7.7.7.7",
                     "area": 100,
                     "loopback": true
                 },
                 {
                     "ip": "9.9.9.9",
+                    "area": 100,
+                    "loopback": true
+                },
+                {
+                    "ip": "10.10.10.10",
                     "area": 100,
                     "loopback": true
                 },
@@ -691,11 +784,6 @@
                     "route map": null
                 },
                 {
-                    "ip": "3.3.3.3",
-                    "activate": true,
-                    "route map": null
-                },
-                {
                     "ip": "4.4.4.4",
                     "activate": true,
                     "route map": null
@@ -711,7 +799,7 @@
                     "route map": null
                 },
                 {
-                    "ip": "8.8.8.8",
+                    "ip": "7.7.7.7",
                     "activate": true,
                     "route map": null
                 },
@@ -721,13 +809,18 @@
                     "route map": null
                 },
                 {
+                    "ip": "10.10.10.10",
+                    "activate": true,
+                    "route map": null
+                },
+                {
                     "ip": "172.168.2.0",
                     "activate": false,
-                    "route map": "RM"
+                    "route map": "RM_CE2"
                 }
             ],
             "area": "100",
-            "router_id": "7.7.7.7"
+            "router_id": "8.8.8.8"
         },
         "access list": [
             {
@@ -739,7 +832,7 @@
         ],
         "route map": [
             {
-                "name": "RM",
+                "name": "RM_CE2",
                 "process": 10,
                 "access-list": 1,
                 "local_preference": 50
@@ -748,7 +841,7 @@
     },
     "PE4": {
         "name": "PE4",
-        "number": 8,
+        "number": 9,
         "neighbors": [
             "P2",
             "CE4"
@@ -758,7 +851,7 @@
         },
         "interfaces": {
             "Loopback0": {
-                "ip address": "8.8.8.8",
+                "ip address": "9.9.9.9",
                 "mask": "255.255.255.255",
                 "ospf": 10,
                 "area": 0,
@@ -784,7 +877,7 @@
         },
         "router ospf": {
             "process": 10,
-            "router id": "8.8.8.8",
+            "router id": "9.9.9.9",
             "passive": [
                 "GigabitEthernet2/0"
             ]
@@ -793,11 +886,6 @@
             "neighbors": [
                 {
                     "ip": "2.2.2.2",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "3.3.3.3",
                     "area": 100,
                     "loopback": true
                 },
@@ -822,7 +910,12 @@
                     "loopback": true
                 },
                 {
-                    "ip": "9.9.9.9",
+                    "ip": "8.8.8.8",
+                    "area": 100,
+                    "loopback": true
+                },
+                {
+                    "ip": "10.10.10.10",
                     "area": 100,
                     "loopback": true
                 },
@@ -839,11 +932,6 @@
                     "route map": null
                 },
                 {
-                    "ip": "3.3.3.3",
-                    "activate": true,
-                    "route map": null
-                },
-                {
                     "ip": "4.4.4.4",
                     "activate": true,
                     "route map": null
@@ -864,18 +952,23 @@
                     "route map": null
                 },
                 {
-                    "ip": "9.9.9.9",
+                    "ip": "8.8.8.8",
+                    "activate": true,
+                    "route map": null
+                },
+                {
+                    "ip": "10.10.10.10",
                     "activate": true,
                     "route map": null
                 },
                 {
                     "ip": "172.168.4.0",
                     "activate": false,
-                    "route map": "RM"
+                    "route map": "RM_CE4"
                 }
             ],
             "area": "100",
-            "router_id": "8.8.8.8"
+            "router_id": "9.9.9.9"
         },
         "access list": [
             {
@@ -887,7 +980,7 @@
         ],
         "route map": [
             {
-                "name": "RM",
+                "name": "RM_CE4",
                 "process": 10,
                 "access-list": 1,
                 "local_preference": 150
@@ -896,7 +989,7 @@
     },
     "PE3": {
         "name": "PE3",
-        "number": 9,
+        "number": 10,
         "neighbors": [
             "P3",
             "CE3"
@@ -906,12 +999,12 @@
         },
         "interfaces": {
             "Loopback0": {
-                "ip address": "9.9.9.9",
+                "ip address": "10.10.10.10",
                 "mask": "255.255.255.255",
                 "ospf": 10,
                 "area": 0,
                 "negotiation auto": "not defined",
-                "mpls": "not defined"
+                "mpls": "ip"
             },
             "GigabitEthernet1/0": {
                 "ip address": "10.103.3.1",
@@ -932,7 +1025,7 @@
         },
         "router ospf": {
             "process": 10,
-            "router id": "9.9.9.9",
+            "router id": "10.10.10.10",
             "passive": [
                 "GigabitEthernet2/0"
             ]
@@ -941,11 +1034,6 @@
             "neighbors": [
                 {
                     "ip": "2.2.2.2",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "3.3.3.3",
                     "area": 100,
                     "loopback": true
                 },
@@ -971,6 +1059,11 @@
                 },
                 {
                     "ip": "8.8.8.8",
+                    "area": 100,
+                    "loopback": true
+                },
+                {
+                    "ip": "9.9.9.9",
                     "area": 100,
                     "loopback": true
                 },
@@ -987,11 +1080,6 @@
                     "route map": null
                 },
                 {
-                    "ip": "3.3.3.3",
-                    "activate": true,
-                    "route map": null
-                },
-                {
                     "ip": "4.4.4.4",
                     "activate": true,
                     "route map": null
@@ -1017,13 +1105,18 @@
                     "route map": null
                 },
                 {
+                    "ip": "9.9.9.9",
+                    "activate": true,
+                    "route map": null
+                },
+                {
                     "ip": "172.168.3.0",
                     "activate": false,
-                    "route map": "RM"
+                    "route map": "RM_CE3"
                 }
             ],
             "area": "100",
-            "router_id": "9.9.9.9"
+            "router_id": "10.10.10.10"
         },
         "access list": [
             {
@@ -1035,7 +1128,7 @@
         ],
         "route map": [
             {
-                "name": "RM",
+                "name": "RM_CE3",
                 "process": 10,
                 "access-list": 1,
                 "local_preference": 150
@@ -1044,7 +1137,7 @@
     },
     "CE2": {
         "name": "CE2",
-        "number": 10,
+        "number": 11,
         "neighbors": [
             "PE2",
             "PC2"
@@ -1052,7 +1145,7 @@
         "connect type": {},
         "interfaces": {
             "Loopback0": {
-                "ip address": "10.10.10.10",
+                "ip address": "11.11.11.11",
                 "mask": "255.255.255.255",
                 "ospf": "not defined",
                 "area": "not defined",
@@ -1098,14 +1191,14 @@
                 }
             ],
             "area": "102",
-            "router_id": "10.10.10.10"
+            "router_id": "11.11.11.11"
         },
         "access list": [],
         "route map": []
     },
     "CE3": {
         "name": "CE3",
-        "number": 11,
+        "number": 12,
         "neighbors": [
             "PE3",
             "PC3"
@@ -1113,7 +1206,7 @@
         "connect type": {},
         "interfaces": {
             "Loopback0": {
-                "ip address": "11.11.11.11",
+                "ip address": "12.12.12.12",
                 "mask": "255.255.255.255",
                 "ospf": "not defined",
                 "area": "not defined",
@@ -1159,14 +1252,14 @@
                 }
             ],
             "area": "103",
-            "router_id": "11.11.11.11"
+            "router_id": "12.12.12.12"
         },
         "access list": [],
         "route map": []
     },
     "CE4": {
         "name": "CE4",
-        "number": 12,
+        "number": 13,
         "neighbors": [
             "PE4",
             "PC4"
@@ -1174,7 +1267,7 @@
         "connect type": {},
         "interfaces": {
             "Loopback0": {
-                "ip address": "12.12.12.12",
+                "ip address": "13.13.13.13",
                 "mask": "255.255.255.255",
                 "ospf": "not defined",
                 "area": "not defined",
@@ -1220,7 +1313,7 @@
                 }
             ],
             "area": "104",
-            "router_id": "12.12.12.12"
+            "router_id": "13.13.13.13"
         },
         "access list": [],
         "route map": []

@@ -112,7 +112,7 @@ def define_bgp(noeuds):
 					num = noeuds[n].name[2:]
 					bgp.add_neighbor('172.168.%s.1' %noeuds[noeud].name[2:], '1%.2d' %int(noeuds[noeud].name[2:]), False)
 					
-					routemap = RouteMap('RM')
+					routemap = RouteMap('RM_%s' %n)
 					access_list = {}
 					access_list['name'] = 1
 					access_list['permit'] = []
