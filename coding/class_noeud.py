@@ -68,9 +68,6 @@ class RouteMap(object):
 		
 class Routeur(object):
 	router_bgp = 'not defined'
-	ip_forward_protocol = 'not defined'
-	ip_server = False
-	ip_secure_server = False
 	
 	def __init__(self,name,number):
                 self.name = name
@@ -113,6 +110,9 @@ class Routeur(object):
 	def set_router_ospf(self,process,router_id):
                 self.router_ospf['process'] = process
                 self.router_ospf['router id'] = router_id
+                self.router_ospf['passive'] = []
+	def add_passive_ospf(self,passive_port):
+		self.router_ospf['passive'].append(passive_port)
 	def to_json(self):
                 self.json['name'] = self.name
                 self.json['number'] = self.number
@@ -122,9 +122,6 @@ class Routeur(object):
                 self.json['router bgp'] = self.router_bgp
                 self.json['access list'] = self.access_list
                 self.json['route map'] = self.route_map
-                self.json['ip forward-protocol'] = self.ip_forward_protocol
-                self.json['ip http server'] = self.ip_server
-                self.json['ip http secure-server'] = self.ip_secure_server
 	def to_python(self,info):
                 self.name = info['name']
                 self.number = info['number']
@@ -134,9 +131,6 @@ class Routeur(object):
                 self.router_bgp = info['router bgp']
                 self.access_list = info['access list']
                 self.route_map = info['route map']
-                self.ip_forward_protocol = info['ip forward-protocol']
-                self.ip_server = info['ip http server']
-                self.ip_secure_server = info['ip http secure-server']
 
 class Client(object):
         ip = 'not defined'

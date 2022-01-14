@@ -56,7 +56,8 @@ for key in clients.keys():
 
 fw = open('./topologie.json','w')
 json_routeurs = json.dumps(routeurs,indent = 4, separators = (',',': '))
-fw.write(json_routeurs)		
+fw.write(json_routeurs)
+fw.write('!')		
 json_clients = json.dumps(clients,indent = 4, separators = (',',': '))
 fw.write(json_clients)	
 fw.close()
