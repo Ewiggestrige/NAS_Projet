@@ -108,9 +108,10 @@ def define_bgp(noeuds):
 					num = noeuds[n].number
 					bgp.add_neighbor('%d.%d.%d.%d' %(num,num,num,num), 100, True)
 					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, None)
-				elif noeuds[noeud].name[2:] == noeuds[n].name[2:] and noeuds[n].name != noeuds[noeud].name:
+				elif n in noeuds[noeud].neighbors and noeuds[n].name != noeuds[noeud].name:
 					num = noeuds[n].name[2:]
 					bgp.add_neighbor('172.168.%s.1' %noeuds[noeud].name[2:], '1%.2d' %int(noeuds[noeud].name[2:]), False)
+					
 					routemap = RouteMap('RM')
 					access_list = {}
 					access_list['name'] = 1
@@ -119,10 +120,14 @@ def define_bgp(noeuds):
 					noeuds[noeud].access_list.append(access_list)
 					routemap.process = 10
 					routemap.access_list = access_list['name']
-					if (int(noeuds[noeud].name[2:])%2 == 0):
-						routemap.local_preference = 150
-					else:
-						routemap.local_preference = 50
+					connect_type = noeuds[noeud].connect_type
+					if n in connect_type.keys():
+						if connect_type[n] == 'client':
+							routemap.local_preference = 150
+						elif connect_type[n] == 'peer':
+							routemap.local_preference =100
+						else:
+							routemap.local_preference = 50
 					noeuds[noeud].route_map.append(routemap)
 					bgp.add_family('172.168.%s.0' %noeuds[noeud].name[2:], False, routemap.name)
 			noeuds[noeud].router_bgp = bgp

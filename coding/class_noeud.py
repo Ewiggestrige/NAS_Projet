@@ -73,6 +73,7 @@ class Routeur(object):
                 self.name = name
                 self.number = number
                 self.neighbors = []
+                self.connect_type = {}
                 self.interfaces = {}
                 self.router_ospf = {}
                 self.access_list = []
@@ -117,6 +118,7 @@ class Routeur(object):
                 self.json['name'] = self.name
                 self.json['number'] = self.number
                 self.json['neighbors'] = self.neighbors
+                self.json['connect type'] = self.connect_type
                 self.json['interfaces'] = self.interfaces
                 self.json['router ospf'] = self.router_ospf
                 self.json['router bgp'] = self.router_bgp
@@ -126,6 +128,7 @@ class Routeur(object):
                 self.name = info['name']
                 self.number = info['number']
                 self.neighbors = info['neighbors']
+                self.connect_type = info['connect type']
                 self.interfaces = info['interfaces']
                 self.router_ospf = info['router ospf']
                 self.router_bgp = info['router bgp']

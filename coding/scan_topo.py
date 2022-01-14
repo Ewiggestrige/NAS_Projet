@@ -24,6 +24,8 @@ for line in fr.readlines():
 				routeurs[noeud_pair[0]].neighbors.append(noeud_pair[1])
 			else:
 				print('Strange Here!')
+			if noeud_pair[0][:2] == 'PE' and noeud_pair[2]!='none':
+				routeurs[noeud_pair[0]].connect_type[noeud_pair[1]]=noeud_pair[2]
 		if noeud_pair[1][:2] == 'PC':
 			clients[noeud_pair[1]] = Client(noeud_pair[1],noeud_pair[0])
 		else:
@@ -35,6 +37,8 @@ for line in fr.readlines():
 				routeurs[noeud_pair[1]].neighbors.append(noeud_pair[0])
 			else:
 				print('Strange Here!')
+			if noeud_pair[1][:2] == 'PE' and noeud_pair[2]!='none':
+				routeurs[noeud_pair[1]].connect_type[noeud_pair[0]]=noeud_pair[2]
 fr.close() 
 
 for key in routeurs.keys():

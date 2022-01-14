@@ -6,6 +6,7 @@
             "PC1",
             "PE1"
         ],
+        "connect type": {},
         "interfaces": {
             "Loopback0": {
                 "ip address": "1.1.1.1",
@@ -66,6 +67,9 @@
             "CE1",
             "P1"
         ],
+        "connect type": {
+            "CE1": "peer"
+        },
         "interfaces": {
             "Loopback0": {
                 "ip address": "2.2.2.2",
@@ -200,7 +204,7 @@
                 "name": "RM",
                 "process": 10,
                 "access-list": 1,
-                "local_preference": 50
+                "local_preference": 100
             }
         ]
     },
@@ -213,6 +217,7 @@
             "P3",
             "PE5"
         ],
+        "connect type": {},
         "interfaces": {
             "Loopback0": {
                 "ip address": "3.3.3.3",
@@ -313,6 +318,7 @@
             "PE2",
             "PE4"
         ],
+        "connect type": {},
         "interfaces": {
             "Loopback0": {
                 "ip address": "4.4.4.4",
@@ -404,6 +410,7 @@
             "P1",
             "PE3"
         ],
+        "connect type": {},
         "interfaces": {
             "Loopback0": {
                 "ip address": "5.5.5.5",
@@ -486,6 +493,7 @@
         "neighbors": [
             "P1"
         ],
+        "connect type": {},
         "interfaces": {
             "Loopback0": {
                 "ip address": "6.6.6.6",
@@ -597,6 +605,9 @@
             "P2",
             "CE2"
         ],
+        "connect type": {
+            "CE2": "provider"
+        },
         "interfaces": {
             "Loopback0": {
                 "ip address": "7.7.7.7",
@@ -731,7 +742,7 @@
                 "name": "RM",
                 "process": 10,
                 "access-list": 1,
-                "local_preference": 150
+                "local_preference": 50
             }
         ]
     },
@@ -742,6 +753,9 @@
             "P2",
             "CE4"
         ],
+        "connect type": {
+            "CE4": "client"
+        },
         "interfaces": {
             "Loopback0": {
                 "ip address": "8.8.8.8",
@@ -887,6 +901,9 @@
             "P3",
             "CE3"
         ],
+        "connect type": {
+            "CE3": "client"
+        },
         "interfaces": {
             "Loopback0": {
                 "ip address": "9.9.9.9",
@@ -1021,7 +1038,7 @@
                 "name": "RM",
                 "process": 10,
                 "access-list": 1,
-                "local_preference": 50
+                "local_preference": 150
             }
         ]
     },
@@ -1032,6 +1049,7 @@
             "PE2",
             "PC2"
         ],
+        "connect type": {},
         "interfaces": {
             "Loopback0": {
                 "ip address": "10.10.10.10",
@@ -1092,6 +1110,7 @@
             "PE3",
             "PC3"
         ],
+        "connect type": {},
         "interfaces": {
             "Loopback0": {
                 "ip address": "11.11.11.11",
@@ -1152,6 +1171,7 @@
             "PE4",
             "PC4"
         ],
+        "connect type": {},
         "interfaces": {
             "Loopback0": {
                 "ip address": "12.12.12.12",
