@@ -110,7 +110,7 @@ def define_bgp(noeuds):
 					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, True, None)
 				elif n in noeuds[noeud].neighbors and noeuds[n].name != noeuds[noeud].name:
 					num = noeuds[n].name[2:]
-					bgp.add_neighbor('172.168.%s.1' %noeuds[noeud].name[2:], '1%.2d' %int(noeuds[noeud].name[2:]), False)
+					bgp.add_neighbor('172.168.%s.1' %n[2:], '1%.2d' %int(noeuds[noeud].name[2:]), False)
 					
 					routemap = RouteMap('RM_%s' %n[2:])
 					routemap.process = 10
