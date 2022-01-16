@@ -175,7 +175,7 @@
                     "route map": "RM_1"
                 },
                 {
-                    "ip": "172.168.1.0",
+                    "ip": "172.168.5.0",
                     "activate": false,
                     "send-community": false,
                     "route map": "RM_5"
@@ -221,6 +221,18 @@
                     "activate": true,
                     "send-community": true,
                     "route map": null
+                },
+                {
+                    "ip": "172.168.1.0",
+                    "activate": false,
+                    "send-community": false,
+                    "route map": "RMout_1"
+                },
+                {
+                    "ip": "172.168.5.0",
+                    "activate": false,
+                    "send-community": false,
+                    "route map": "RMout_5"
                 }
             ],
             "area": "100",
@@ -884,6 +896,12 @@
                     "activate": false,
                     "send-community": false,
                     "route map": "RM_2"
+                },
+                {
+                    "ip": "172.168.2.0",
+                    "activate": false,
+                    "send-community": false,
+                    "route map": "RMout_2"
                 }
             ],
             "area": "100",
@@ -1054,6 +1072,12 @@
                     "activate": false,
                     "send-community": false,
                     "route map": "RM_4"
+                },
+                {
+                    "ip": "172.168.4.0",
+                    "activate": false,
+                    "send-community": false,
+                    "route map": "RMout_4"
                 }
             ],
             "area": "100",
@@ -1224,6 +1248,12 @@
                     "activate": false,
                     "send-community": false,
                     "route map": "RM_3"
+                },
+                {
+                    "ip": "172.168.3.0",
+                    "activate": false,
+                    "send-community": false,
+                    "route map": "RMout_3"
                 }
             ],
             "area": "100",

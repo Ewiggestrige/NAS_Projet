@@ -132,7 +132,7 @@ def define_bgp(noeuds):
 							routemap.local_preference = 50
 							routemap.community = 6553900
 					noeuds[noeud].route_map.append(routemap)
-					bgp.add_family('172.168.%s.0' %noeuds[noeud].name[2:], False, False, routemap.name)
+					bgp.add_family('172.168.%s.0' %n[2:], False, False, routemap.name)
 					
 			noeuds[noeud].router_bgp = bgp
 		else:
@@ -172,6 +172,7 @@ def add_community_list(noeuds):
 					routemap.match_community.append(3)
 				else:
 					routemap.match_community.append(1)
+				noeuds[key].router_bgp.add_family('172.168.%s.0' %k[2:], False, False, routemap.name)
 	return noeuds
 		
 				
