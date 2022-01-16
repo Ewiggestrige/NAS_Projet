@@ -26,6 +26,8 @@ for line in fr.readlines():
 				print('Strange Here!')
 			if noeud_pair[0][:2] == 'PE' and noeud_pair[2]!='none':
 				routeurs[noeud_pair[0]].connect_type[noeud_pair[1]]=noeud_pair[2]
+			elif noeud_pair[0][:2] == 'CE':
+				routeurs[noeud_pair[0]].router_type = noeud_pair[2]
 		if noeud_pair[1][:2] == 'PC':
 			clients[noeud_pair[1]] = Client(noeud_pair[1],noeud_pair[0])
 		else:
@@ -39,15 +41,18 @@ for line in fr.readlines():
 				print('Strange Here!')
 			if noeud_pair[1][:2] == 'PE' and noeud_pair[2]!='none':
 				routeurs[noeud_pair[1]].connect_type[noeud_pair[0]]=noeud_pair[2]
+			elif noeud_pair[1][:2] == 'CE':
+				routeurs[noeud_pair[1]].router_type = noeud_pair[2]
 fr.close() 
 
 for key in routeurs.keys():
 	routeurs[key] = define_port(routeurs[key])
 	routeurs[key] = define_ospf(routeurs[key])
-routeurs = define_bgp(routeurs)
-
-for key in routeurs.keys():
 	routeurs[key] = define_mpls(routeurs[key])
+routeurs = define_bgp(routeurs)
+routeurs = add_community_list(routeurs)
+
+for key in routeurs.keys():	
 	routeurs[key].interfaces_to_json()
 	routeurs[key].bgp_to_json()
 	routeurs[key].route_map_to_json()

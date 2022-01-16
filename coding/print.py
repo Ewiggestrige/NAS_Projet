@@ -56,14 +56,14 @@ for router_key in routers.keys():
 			fc.write(' neighbor %s remote-as %s\n' %(neighbor['ip'],neighbor['area']))
 			if neighbor['loopback'] == True:
 				fc.write(' neighbor %s update-source Loopback0\n' %(neighbor['ip']))
-			##############
-			#Community Number to be added
 		if bgp['address_family']!=[]:
 			fc.write(' !\n')
 			fc.write(' address-family ipv4\n')
 		for address in bgp['address_family']:
 			if address['activate'] == True:
 				fc.write('  neighbor %s activate\n' %address['ip'])
+			if address['send_community'] == True:
+				fc.write('  neighbor %s send-community\n' %address['ip'])
 			if address['route map'] != None:
 				fc.write('  neighbor %s route-map %s in\n' %(address['ip'],address['route map']))
 				#out to be added
