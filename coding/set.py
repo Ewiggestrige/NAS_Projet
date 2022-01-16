@@ -90,8 +90,8 @@ def define_bgp(noeuds):
 			num = noeuds[noeud].number
 			bgp.router_id = '%d.%d.%d.%d' %(num,num,num,num)
 			bgp.add_neighbor('172.168.%s.2' %noeuds[noeud].name[2:], '%d' %int(noeuds[noeud].name[2:]), False)
-			bgp.add_family('192.168.%s.0' %noeuds[noeud].name[2:], False, False, None)
-			bgp.add_family('172.168.%s.2' %noeuds[noeud].name[2:], True, False, None)
+			bgp.add_family('192.168.%s.0' %noeuds[noeud].name[2:], False, False, None,False)
+			bgp.add_family('172.168.%s.2' %noeuds[noeud].name[2:], True, False, None,False)
 			noeuds[noeud].router_bgp = bgp
 		elif noeuds[noeud].name[:2] == 'PE':
 			bgp = BGP()
@@ -103,11 +103,11 @@ def define_bgp(noeuds):
 				if noeuds[n].name[:2] == 'PE' and noeuds[n].name != noeuds[noeud].name:
 					num = noeuds[n].number
 					bgp.add_neighbor('%d.%d.%d.%d' %(num,num,num,num), 100, True)
-					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, True, None)
+					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, True, None,False)
 				elif noeuds[n].name[:1] == 'P' and noeuds[n].name != noeuds[noeud].name:
 					num = noeuds[n].number
 					bgp.add_neighbor('%d.%d.%d.%d' %(num,num,num,num), 100, True)
-					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, True, None)
+					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, True, None,False)
 				elif n in noeuds[noeud].neighbors and noeuds[n].name != noeuds[noeud].name:
 					num = noeuds[n].name[2:]
 					bgp.add_neighbor('172.168.%s.1' %n[2:], '1%.2d' %int(noeuds[noeud].name[2:]), False)
@@ -132,7 +132,7 @@ def define_bgp(noeuds):
 							routemap.local_preference = 50
 							routemap.community = 6553900
 					noeuds[noeud].route_map.append(routemap)
-					bgp.add_family('172.168.%s.0' %n[2:], False, False, routemap.name)
+					bgp.add_family('172.168.%s.0' %n[2:], False, False, routemap.name,'in')
 					
 			noeuds[noeud].router_bgp = bgp
 		else:
@@ -172,7 +172,8 @@ def add_community_list(noeuds):
 					routemap.match_community.append(3)
 				else:
 					routemap.match_community.append(1)
-				noeuds[key].router_bgp.add_family('172.168.%s.0' %k[2:], False, False, routemap.name)
+				noeuds[key].route_map.append(routemap)
+				noeuds[key].router_bgp.add_family('172.168.%s.0' %k[2:], False, False, routemap.name,'out')
 	return noeuds
 		
 				

@@ -48,13 +48,15 @@
                     "ip": "192.168.1.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "172.168.1.2",
                     "activate": true,
                     "send-community": false,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 }
             ],
             "area": "101",
@@ -172,67 +174,78 @@
                     "ip": "172.168.1.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": "RM_1"
+                    "route map": "RM_1",
+                    "status": "in"
                 },
                 {
                     "ip": "172.168.5.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": "RM_5"
+                    "route map": "RM_5",
+                    "status": "in"
                 },
                 {
                     "ip": "4.4.4.4",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "5.5.5.5",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "6.6.6.6",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "7.7.7.7",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "8.8.8.8",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "9.9.9.9",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "10.10.10.10",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "172.168.1.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": "RMout_1"
+                    "route map": "RMout_1",
+                    "status": "out"
                 },
                 {
                     "ip": "172.168.5.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": "RMout_5"
+                    "route map": "RMout_5",
+                    "status": "out"
                 }
             ],
             "area": "100",
@@ -279,6 +292,27 @@
                 "local_preference": 50,
                 "community": 6553900,
                 "match_community": []
+            },
+            {
+                "name": "RMout_1",
+                "process": 20,
+                "access-list": "not defined",
+                "local_preference": "not defined",
+                "community": "not defined",
+                "match_community": [
+                    1,
+                    2
+                ]
+            },
+            {
+                "name": "RMout_5",
+                "process": 20,
+                "access-list": "not defined",
+                "local_preference": "not defined",
+                "community": "not defined",
+                "match_community": [
+                    1
+                ]
             }
         ]
     },
@@ -330,13 +364,15 @@
                     "ip": "192.168.5.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "172.168.5.2",
                     "activate": true,
                     "send-community": false,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 }
             ],
             "area": "105",
@@ -705,43 +741,50 @@
                     "ip": "2.2.2.2",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "4.4.4.4",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "5.5.5.5",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "6.6.6.6",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "8.8.8.8",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "9.9.9.9",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "10.10.10.10",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 }
             ],
             "area": "100",
@@ -853,55 +896,64 @@
                     "ip": "2.2.2.2",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "4.4.4.4",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "5.5.5.5",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "6.6.6.6",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "7.7.7.7",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "9.9.9.9",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "10.10.10.10",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "172.168.2.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": "RM_2"
+                    "route map": "RM_2",
+                    "status": "in"
                 },
                 {
                     "ip": "172.168.2.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": "RMout_2"
+                    "route map": "RMout_2",
+                    "status": "out"
                 }
             ],
             "area": "100",
@@ -934,6 +986,16 @@
                 "local_preference": 50,
                 "community": 6553900,
                 "match_community": []
+            },
+            {
+                "name": "RMout_2",
+                "process": 20,
+                "access-list": "not defined",
+                "local_preference": "not defined",
+                "community": "not defined",
+                "match_community": [
+                    1
+                ]
             }
         ]
     },
@@ -1029,55 +1091,64 @@
                     "ip": "2.2.2.2",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "4.4.4.4",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "5.5.5.5",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "6.6.6.6",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "7.7.7.7",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "8.8.8.8",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "10.10.10.10",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "172.168.4.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": "RM_4"
+                    "route map": "RM_4",
+                    "status": "in"
                 },
                 {
                     "ip": "172.168.4.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": "RMout_4"
+                    "route map": "RMout_4",
+                    "status": "out"
                 }
             ],
             "area": "100",
@@ -1110,6 +1181,18 @@
                 "local_preference": 150,
                 "community": 6553700,
                 "match_community": []
+            },
+            {
+                "name": "RMout_4",
+                "process": 20,
+                "access-list": "not defined",
+                "local_preference": "not defined",
+                "community": "not defined",
+                "match_community": [
+                    1,
+                    2,
+                    3
+                ]
             }
         ]
     },
@@ -1205,55 +1288,64 @@
                     "ip": "2.2.2.2",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "4.4.4.4",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "5.5.5.5",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "6.6.6.6",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "7.7.7.7",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "8.8.8.8",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "9.9.9.9",
                     "activate": true,
                     "send-community": true,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "172.168.3.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": "RM_3"
+                    "route map": "RM_3",
+                    "status": "in"
                 },
                 {
                     "ip": "172.168.3.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": "RMout_3"
+                    "route map": "RMout_3",
+                    "status": "out"
                 }
             ],
             "area": "100",
@@ -1286,6 +1378,18 @@
                 "local_preference": 150,
                 "community": 6553700,
                 "match_community": []
+            },
+            {
+                "name": "RMout_3",
+                "process": 20,
+                "access-list": "not defined",
+                "local_preference": "not defined",
+                "community": "not defined",
+                "match_community": [
+                    1,
+                    2,
+                    3
+                ]
             }
         ]
     },
@@ -1338,13 +1442,15 @@
                     "ip": "192.168.2.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "172.168.2.2",
                     "activate": true,
                     "send-community": false,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 }
             ],
             "area": "102",
@@ -1403,13 +1509,15 @@
                     "ip": "192.168.3.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "172.168.3.2",
                     "activate": true,
                     "send-community": false,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 }
             ],
             "area": "103",
@@ -1468,13 +1576,15 @@
                     "ip": "192.168.4.0",
                     "activate": false,
                     "send-community": false,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "172.168.4.2",
                     "activate": true,
                     "send-community": false,
-                    "route map": null
+                    "route map": null,
+                    "status": false
                 }
             ],
             "area": "104",

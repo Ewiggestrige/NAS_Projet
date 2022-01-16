@@ -35,8 +35,8 @@ class BGP(object):
 		self.json = {}
 	def add_neighbor(self, ip, area, loopback):
 		self.neighbors.append({'ip':ip,'area':area, 'loopback': loopback})
-	def add_family(self, ip, activate,sc, routemap):
-		self.address_family.append({'ip':ip, 'activate':activate,'send-community':sc, 'route map':routemap})
+	def add_family(self, ip, activate,sc, routemap, status):
+		self.address_family.append({'ip':ip, 'activate':activate,'send-community':sc, 'route map':routemap, 'status':status})
 	def to_json(self):
 		self.json['neighbors'] = self.neighbors
 		self.json['address_family'] = self.address_family
