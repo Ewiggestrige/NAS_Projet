@@ -157,9 +157,9 @@ def add_community_list(noeuds):
 	for key in noeuds.keys():
 		noeud = noeuds[key]
 		if key[:2] == 'PE':
-			noeuds[key].community_list.append({1:6553700})
-			noeuds[key].community_list.append({2:6553800})
-			noeuds[key].community_list.append({3:6553900})
+			noeuds[key].community_list.append({'name':1,'number':6553700})
+			noeuds[key].community_list.append({'name':2,'number':6553800})
+			noeuds[key].community_list.append({'name':3,'number':6553900})
 			for k in noeud.connect_type.keys():
 				routemap = RouteMap('RMout_%s' %k[2:])
 				routemap.process = 20

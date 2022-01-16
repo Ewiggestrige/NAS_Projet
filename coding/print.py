@@ -62,22 +62,47 @@ for router_key in routers.keys():
 		for address in bgp['address_family']:
 			if address['activate'] == True:
 				fc.write('  neighbor %s activate\n' %address['ip'])
-			if address['send_community'] == True:
+			if address['send-community'] == True:
 				fc.write('  neighbor %s send-community\n' %address['ip'])
 			if address['route map'] != None:
-				fc.write('  neighbor %s route-map %s in\n' %(address['ip'],address['route map']))
-				#out to be added
+				fc.write('  neighbor %s route-map %s %s\n' %(address['ip'],address['route map'],address['status']))	
 		fc.write(' exit-address-family\n')
 		fc.write('!\n')
 		
 	#constant
-	fc.write('ip forward-protocol nd\n!\n!\n')
+	fc.write('ip forward-protocol nd\n!\n')
+	
+	#community-list
+	for cl in router['community_list']:
+		fc.write('ip community-list %s permit %d\n' %(cl['name'],cl['number']))
+		
+	#constant
+	fc.write('!\n')
 	fc.write('no ip http server\n')
 	fc.write('no ip http secure-server\n!\n')
 	
 	#access list
+	for al in router['access list']:
+		fc.write('access-list %d permit %s\n' %(al['name'], al['permit'][0]))
+	fc.write('!\n')
 	
-	#
+	#routemap
+	for rm in router['route map']:
+		fc.write('route-map %s permit %d\n' %(rm['name'],rm['process']))
+		if rm['access-list'] != 'not defined':
+			fc.write(' match ip address %d\n' %rm['access-list'])
+		if rm['local_preference'] != 'not defined':
+			fc.write(' set local-preference %d\n' %rm['local_preference'])
+		if rm['community'] != 'not defined':
+			fc.write(' set community %d\n' %rm['community'])
+		if rm['match_community'] != []:
+			fc.write(' match community ')
+			for i in rm['match_community']:
+				fc.write('%d ' %i)
+			fc.write('\n')
+		fc.write('!\n')
+	
+	#constant
 	fc.write('control-plane\n!\n!\n')
 	fc.write('line con 0\n')
 	fc.write(' exec-timeout 0 0\n')
