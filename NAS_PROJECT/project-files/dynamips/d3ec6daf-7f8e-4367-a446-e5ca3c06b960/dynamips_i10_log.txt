@@ -1,0 +1,47 @@
+Nov 26 15:42:26.844 HYPERVISOR: Release 0.2.21-amd64/Linux (tag 2019071212)
+Nov 26 15:42:26.844 HYPERVISOR: Started on IP = localhost, TCP port = 57297.
+Nov 26 15:42:26.853 HYPERVISOR: exec_cmd: hypervisor version 
+Nov 26 15:42:26.853 HYPERVISOR: exec_cmd: hypervisor working_dir /home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips 
+Nov 26 15:42:26.853 GENERAL: working_dir=/home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips
+Nov 26 15:42:26.853 HYPERVISOR: exec_cmd: hypervisor working_dir /home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips/d3ec6daf-7f8e-4367-a446-e5ca3c06b960 
+Nov 26 15:42:26.854 GENERAL: working_dir=/home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips/d3ec6daf-7f8e-4367-a446-e5ca3c06b960
+Nov 26 15:42:26.854 HYPERVISOR: exec_cmd: vm create CE2 10 c7200 
+Nov 26 15:42:26.856 VM: VM CE2 created.
+Nov 26 15:42:26.857 HYPERVISOR: exec_cmd: vm set_con_tcp_port CE2 5017 
+Nov 26 15:42:26.857 HYPERVISOR: exec_cmd: c7200 get_mac_addr CE2 
+Nov 26 15:42:26.857 HYPERVISOR: exec_cmd: vm get_status CE2 
+Nov 26 15:42:26.857 HYPERVISOR: exec_cmd: vm slot_add_binding CE2 0 0 C7200-IO-FE 
+Nov 26 15:42:26.858 HYPERVISOR: exec_cmd: vm set_disk0 CE2 0 
+Nov 26 15:42:26.858 HYPERVISOR: exec_cmd: vm get_status CE2 
+Nov 26 15:42:26.858 HYPERVISOR: exec_cmd: vm set_idle_pc CE2 0x62cc90e4 
+Nov 26 15:42:26.859 HYPERVISOR: exec_cmd: vm set_ios CE2 /home/yhliu/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Nov 26 15:42:26.859 HYPERVISOR: exec_cmd: c7200 set_mac_addr CE2 ca0a.5851.0000 
+Nov 26 15:42:26.859 HYPERVISOR: exec_cmd: vm set_nvram CE2 512 
+Nov 26 15:42:26.860 HYPERVISOR: exec_cmd: vm set_ram CE2 512 
+Nov 26 15:42:26.860 HYPERVISOR: exec_cmd: vm get_status CE2 
+Nov 26 15:42:26.860 HYPERVISOR: exec_cmd: vm slot_add_binding CE2 1 0 PA-GE 
+Nov 26 15:42:26.860 HYPERVISOR: exec_cmd: vm get_status CE2 
+Nov 26 15:42:26.860 HYPERVISOR: exec_cmd: vm slot_add_binding CE2 2 0 PA-GE 
+Nov 26 15:42:26.860 HYPERVISOR: exec_cmd: vm get_status CE2 
+Nov 26 15:42:26.860 HYPERVISOR: exec_cmd: vm slot_add_binding CE2 3 0 PA-GE 
+Nov 26 15:42:26.860 HYPERVISOR: exec_cmd: vm get_status CE2 
+Nov 26 15:42:26.861 HYPERVISOR: exec_cmd: vm slot_add_binding CE2 4 0 PA-GE 
+Nov 26 15:42:26.861 HYPERVISOR: exec_cmd: vm get_status CE2 
+Nov 26 15:42:26.861 HYPERVISOR: exec_cmd: vm slot_add_binding CE2 5 0 PA-GE 
+Nov 26 15:42:26.861 HYPERVISOR: exec_cmd: vm get_status CE2 
+Nov 26 15:42:26.861 HYPERVISOR: exec_cmd: vm slot_add_binding CE2 6 0 PA-GE 
+Nov 26 15:42:30.079 HYPERVISOR: exec_cmd: nio create_udp udp-2409e552-e245-4729-89eb-8d1ddb0dc30c 10064 127.0.0.1 10065 
+Nov 26 15:42:30.308 HYPERVISOR: exec_cmd: vm slot_add_nio_binding CE2 1 0 udp-2409e552-e245-4729-89eb-8d1ddb0dc30c 
+Nov 26 15:42:30.309 HYPERVISOR: exec_cmd: vm get_status CE2 
+Nov 26 15:42:30.771 HYPERVISOR: exec_cmd: nio create_udp udp-18271a8f-c06d-4f9c-b96e-75c0831bfa23 10078 127.0.0.1 10079 
+Nov 26 15:42:30.771 HYPERVISOR: exec_cmd: vm slot_add_nio_binding CE2 2 0 udp-18271a8f-c06d-4f9c-b96e-75c0831bfa23 
+Nov 26 15:42:30.771 HYPERVISOR: exec_cmd: vm get_status CE2 
+Nov 26 15:43:09.607 HYPERVISOR: exec_cmd: vm set_ghost_status CE2 2 
+Nov 26 15:43:09.608 HYPERVISOR: exec_cmd: vm set_ghost_file CE2 /home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips/c7200-advipservicesk9-mz.152-4.S5.image-512.ghost 
+Nov 26 15:43:09.608 HYPERVISOR: exec_cmd: vm get_status CE2 
+Nov 26 15:43:09.608 HYPERVISOR: exec_cmd: vm set_config CE2 configs/i10_startup-config.cfg 
+Nov 26 15:43:09.609 HYPERVISOR: exec_cmd: vm start CE2 
+Nov 26 15:43:39.827 HYPERVISOR: exec_cmd: vm extract_config CE2 
+Nov 26 16:26:15.789 HYPERVISOR: exec_cmd: vm set_ghost_status CE2 2 
+Nov 26 16:26:15.789 HYPERVISOR: exec_cmd: vm set_ghost_file CE2 /home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips/c7200-advipservicesk9-mz.152-4.S5.image-512.ghost 
+Nov 26 16:26:15.790 HYPERVISOR: exec_cmd: vm get_status CE2 
