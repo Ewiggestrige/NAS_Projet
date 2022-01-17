@@ -109,7 +109,7 @@ for router_key in routers.keys():
 	fc.write(' privilege level 15\n')
 	fc.write(' logging synchronous\n')
 	fc.write(' stopbits 1\n')
-	fc.write('line aux 0')
+	fc.write('line aux 0\n')
 	fc.write(' exec-timeout 0 0\n')
 	fc.write(' privilege level 15\n')
 	fc.write(' logging synchronous\n')
