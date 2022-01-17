@@ -79,7 +79,7 @@ class Routeur(object):
 	def __init__(self,name,number):
                 self.name = name
                 self.number = number
-                self.neighbors = []
+                self.neighbors = {}
                 self.connect_type = {}
                 self.interfaces = {}
                 self.router_ospf = {}

@@ -19,30 +19,30 @@ for line in fr.readlines():
 			if not noeud_pair[0] in routeurs:
 				routeurs[noeud_pair[0]] = Routeur(noeud_pair[0],i)
 				i = i+1
-				routeurs[noeud_pair[0]].neighbors.append(noeud_pair[1])
-			elif not noeud_pair[1] in routeurs[noeud_pair[0]].neighbors:
-				routeurs[noeud_pair[0]].neighbors.append(noeud_pair[1])
+				routeurs[noeud_pair[0]].neighbors[noeud_pair[3]] = {'port':noeud_pair[1],'ip':noeud_pair[2]}
+			elif not noeud_pair[3] in routeurs[noeud_pair[0]].neighbors.keys():
+				routeurs[noeud_pair[0]].neighbors[noeud_pair[3]] = {'port':noeud_pair[1],'ip':noeud_pair[2]}
 			else:
 				print('Strange Here!')
-			if noeud_pair[0][:2] == 'PE' and noeud_pair[2]!='none':
-				routeurs[noeud_pair[0]].connect_type[noeud_pair[1]]=noeud_pair[2]
+			if noeud_pair[0][:2] == 'PE' and noeud_pair[6]!='none':
+				routeurs[noeud_pair[0]].connect_type[noeud_pair[3]]=noeud_pair[6]
 			elif noeud_pair[0][:2] == 'CE':
-				routeurs[noeud_pair[0]].router_type = noeud_pair[2]
-		if noeud_pair[1][:2] == 'PC':
-			clients[noeud_pair[1]] = Client(noeud_pair[1],noeud_pair[0])
+				routeurs[noeud_pair[0]].router_type = noeud_pair[6]
+		if noeud_pair[3][:2] == 'PC':
+			clients[noeud_pair[3]] = Client(noeud_pair[3],noeud_pair[0])
 		else:
-			if not noeud_pair[1] in routeurs:
-				routeurs[noeud_pair[1]] = Routeur(noeud_pair[1],i)
+			if not noeud_pair[3] in routeurs:
+				routeurs[noeud_pair[3]] = Routeur(noeud_pair[3],i)
 				i = i+1
-				routeurs[noeud_pair[1]].neighbors.append(noeud_pair[0])
-			elif not noeud_pair[0] in routeurs[noeud_pair[1]].neighbors:
-				routeurs[noeud_pair[1]].neighbors.append(noeud_pair[0])
+				routeurs[noeud_pair[3]].neighbors[noeud_pair[0]] = {'port':noeud_pair[4],'ip':noeud_pair[5]}
+			elif not noeud_pair[0] in routeurs[noeud_pair[3]].neighbors.keys():
+				routeurs[noeud_pair[3]].neighbors[noeud_pair[0]] = {'port':noeud_pair[4],'ip':noeud_pair[5]}
 			else:
 				print('Strange Here!')
-			if noeud_pair[1][:2] == 'PE' and noeud_pair[2]!='none':
-				routeurs[noeud_pair[1]].connect_type[noeud_pair[0]]=noeud_pair[2]
-			elif noeud_pair[1][:2] == 'CE':
-				routeurs[noeud_pair[1]].router_type = noeud_pair[2]
+			if noeud_pair[3][:2] == 'PE' and noeud_pair[6]!='none':
+				routeurs[noeud_pair[3]].connect_type[noeud_pair[0]]=noeud_pair[6]
+			elif noeud_pair[3][:2] == 'CE':
+				routeurs[noeud_pair[3]].router_type = noeud_pair[6]
 fr.close() 
 
 for key in routeurs.keys():

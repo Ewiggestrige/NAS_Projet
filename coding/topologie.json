@@ -2,11 +2,17 @@
     "CE1": {
         "name": "CE1",
         "number": 1,
-        "router_type": "peer",
-        "neighbors": [
-            "PC1",
-            "PE1"
-        ],
+        "router_type": "client",
+        "neighbors": {
+            "PC1": {
+                "port": "GE0",
+                "ip": "192.168.1.1"
+            },
+            "PE1": {
+                "port": "GE1",
+                "ip": "172.168.1.1"
+            }
+        },
         "connect type": {},
         "interfaces": {
             "Loopback0": {
@@ -17,7 +23,7 @@
                 "negotiation auto": "not defined",
                 "mpls": "not defined"
             },
-            "GigabitEthernet1/0": {
+            "GigabitEthernet0/0": {
                 "ip address": "192.168.1.1",
                 "mask": "255.255.255.0",
                 "ospf": "not defined",
@@ -25,8 +31,8 @@
                 "negotiation auto": true,
                 "mpls": "not defined"
             },
-            "GigabitEthernet2/0": {
-                "ip address": "172.16.1.1",
+            "GigabitEthernet1/0": {
+                "ip address": "172.168.1.1",
                 "mask": "255.255.255.0",
                 "ospf": "not defined",
                 "area": "not defined",
@@ -70,14 +76,18 @@
         "name": "PE1",
         "number": 2,
         "router_type": "not defined",
-        "neighbors": [
-            "CE1",
-            "CE5",
-            "P1"
-        ],
+        "neighbors": {
+            "CE1": {
+                "port": "GE0",
+                "ip": "172.168.1.2"
+            },
+            "P1": {
+                "port": "GE1",
+                "ip": "10.1.1.1"
+            }
+        },
         "connect type": {
-            "CE1": "peer",
-            "CE5": "provider"
+            "CE1": "client"
         },
         "interfaces": {
             "Loopback0": {
@@ -88,7 +98,7 @@
                 "negotiation auto": "not defined",
                 "mpls": "not defined"
             },
-            "GigabitEthernet1/0": {
+            "GigabitEthernet0/0": {
                 "ip address": "172.168.1.2",
                 "mask": "255.255.255.0",
                 "ospf": 10,
@@ -96,16 +106,8 @@
                 "negotiation auto": true,
                 "mpls": "not defined"
             },
-            "GigabitEthernet2/0": {
-                "ip address": "172.168.5.2",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "not defined"
-            },
-            "GigabitEthernet3/0": {
-                "ip address": "10.101.1.1",
+            "GigabitEthernet1/0": {
+                "ip address": "10.1.1.1",
                 "mask": "255.255.255.0",
                 "ospf": 10,
                 "area": 0,
@@ -117,8 +119,7 @@
             "process": 10,
             "router id": "2.2.2.2",
             "passive": [
-                "GigabitEthernet1/0",
-                "GigabitEthernet2/0"
+                "GigabitEthernet0/0"
             ]
         },
         "router bgp": {
@@ -129,60 +130,30 @@
                     "loopback": false
                 },
                 {
-                    "ip": "172.168.5.1",
-                    "area": "101",
-                    "loopback": false
+                    "ip": "3.3.3.3",
+                    "area": 100,
+                    "loopback": true
                 },
                 {
                     "ip": "4.4.4.4",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "5.5.5.5",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "7.7.7.7",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "8.8.8.8",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "9.9.9.9",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "10.10.10.10",
                     "area": 100,
                     "loopback": true
                 }
             ],
             "address_family": [
                 {
-                    "ip": "172.168.1.0",
+                    "ip": "172.168.1.1",
                     "activate": false,
                     "send-community": false,
                     "route map": "RM_1",
                     "status": "in"
                 },
                 {
-                    "ip": "172.168.5.0",
-                    "activate": false,
-                    "send-community": false,
-                    "route map": "RM_5",
-                    "status": "in"
+                    "ip": "3.3.3.3",
+                    "activate": true,
+                    "send-community": true,
+                    "route map": null,
+                    "status": false
                 },
                 {
                     "ip": "4.4.4.4",
@@ -192,59 +163,10 @@
                     "status": false
                 },
                 {
-                    "ip": "5.5.5.5",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "7.7.7.7",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "8.8.8.8",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "9.9.9.9",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "10.10.10.10",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "172.168.1.0",
+                    "ip": "172.168.1.1",
                     "activate": false,
                     "send-community": false,
                     "route map": "RMout_1",
-                    "status": "out"
-                },
-                {
-                    "ip": "172.168.5.0",
-                    "activate": false,
-                    "send-community": false,
-                    "route map": "RMout_5",
                     "status": "out"
                 }
             ],
@@ -256,12 +178,6 @@
                 "name": 1,
                 "permit": [
                     "192.168.1.0 0.0.0.255"
-                ]
-            },
-            {
-                "name": 5,
-                "permit": [
-                    "192.168.5.0 0.0.0.255"
                 ]
             }
         ],
@@ -284,16 +200,8 @@
                 "name": "RM_1",
                 "process": 10,
                 "access-list": 1,
-                "local_preference": 100,
-                "community": 6553800,
-                "match_community": []
-            },
-            {
-                "name": "RM_5",
-                "process": 10,
-                "access-list": 5,
-                "local_preference": 50,
-                "community": 6553900,
+                "local_preference": 150,
+                "community": 6553700,
                 "match_community": []
             },
             {
@@ -304,98 +212,96 @@
                 "community": "not defined",
                 "match_community": [
                     1,
-                    2
-                ]
-            },
-            {
-                "name": "RMout_5",
-                "process": 20,
-                "access-list": "not defined",
-                "local_preference": "not defined",
-                "community": "not defined",
-                "match_community": [
-                    1
+                    2,
+                    3
                 ]
             }
         ]
     },
-    "CE5": {
-        "name": "CE5",
+    "P1": {
+        "name": "P1",
         "number": 3,
-        "router_type": "provider",
-        "neighbors": [
-            "PE1"
-        ],
+        "router_type": "not defined",
+        "neighbors": {
+            "PE1": {
+                "port": "GE0",
+                "ip": "10.1.1.2"
+            },
+            "PE2": {
+                "port": "GE1",
+                "ip": "10.1.2.1"
+            }
+        },
         "connect type": {},
         "interfaces": {
             "Loopback0": {
                 "ip address": "3.3.3.3",
                 "mask": "255.255.255.255",
-                "ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 0,
                 "negotiation auto": "not defined",
                 "mpls": "not defined"
             },
-            "GigabitEthernet1/0": {
-                "ip address": "192.168.5.1",
+            "GigabitEthernet0/0": {
+                "ip address": "10.1.1.2",
                 "mask": "255.255.255.0",
-                "ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 0,
                 "negotiation auto": true,
-                "mpls": "not defined"
+                "mpls": "ip"
             },
-            "GigabitEthernet2/0": {
-                "ip address": "172.16.5.1",
+            "GigabitEthernet1/0": {
+                "ip address": "10.1.2.1",
                 "mask": "255.255.255.0",
-                "ospf": "not defined",
-                "area": "not defined",
+                "ospf": 10,
+                "area": 0,
                 "negotiation auto": true,
-                "mpls": "not defined"
+                "mpls": "ip"
             }
         },
-        "router ospf": {},
+        "router ospf": {
+            "process": 10,
+            "router id": "3.3.3.3",
+            "passive": []
+        },
         "router bgp": {
             "neighbors": [
                 {
-                    "ip": "172.168.5.2",
-                    "area": "5",
-                    "loopback": false
-                }
-            ],
-            "address_family": [
-                {
-                    "ip": "192.168.5.0",
-                    "activate": false,
-                    "send-community": false,
-                    "route map": null,
-                    "status": false
+                    "ip": "2.2.2.2",
+                    "area": 100,
+                    "loopback": true
                 },
                 {
-                    "ip": "172.168.5.2",
-                    "activate": true,
-                    "send-community": false,
-                    "route map": null,
-                    "status": false
+                    "ip": "4.4.4.4",
+                    "area": 100,
+                    "loopback": true
                 }
             ],
-            "area": "105",
-            "router_id": "3.3.3.3"
+            "address_family": [],
+            "area": "100",
+            "router_id": "not defined"
         },
         "access list": [],
         "community_list": [],
         "route map": []
     },
-    "P1": {
-        "name": "P1",
+    "PE2": {
+        "name": "PE2",
         "number": 4,
         "router_type": "not defined",
-        "neighbors": [
-            "PE1",
-            "P2",
-            "P3",
-            "PE5"
-        ],
-        "connect type": {},
+        "neighbors": {
+            "P1": {
+                "port": "GE0",
+                "ip": "10.1.2.2"
+            },
+            "CE2": {
+                "port": "GE1",
+                "ip": "172.168.2.1"
+            }
+        },
+        "connect type": {
+            "CE2": "provider"
+        },
         "interfaces": {
             "Loopback0": {
                 "ip address": "4.4.4.4",
@@ -405,110 +311,7 @@
                 "negotiation auto": "not defined",
                 "mpls": "not defined"
             },
-            "GigabitEthernet1/0": {
-                "ip address": "10.101.1.2",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            },
-            "GigabitEthernet2/0": {
-                "ip address": "10.1.2.1",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            },
-            "GigabitEthernet3/0": {
-                "ip address": "10.1.3.1",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            },
-            "GigabitEthernet4/0": {
-                "ip address": "10.105.1.2",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            }
-        },
-        "router ospf": {
-            "process": 10,
-            "router id": "4.4.4.4",
-            "passive": []
-        },
-        "router bgp": {
-            "neighbors": [
-                {
-                    "ip": "2.2.2.2",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "5.5.5.5",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "7.7.7.7",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "8.8.8.8",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "9.9.9.9",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "10.10.10.10",
-                    "area": 100,
-                    "loopback": true
-                }
-            ],
-            "address_family": [],
-            "area": "100",
-            "router_id": "not defined"
-        },
-        "access list": [],
-        "community_list": [],
-        "route map": []
-    },
-    "P2": {
-        "name": "P2",
-        "number": 5,
-        "router_type": "not defined",
-        "neighbors": [
-            "P1",
-            "PE2",
-            "PE4"
-        ],
-        "connect type": {},
-        "interfaces": {
-            "Loopback0": {
-                "ip address": "5.5.5.5",
-                "mask": "255.255.255.255",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": "not defined",
-                "mpls": "not defined"
-            },
-            "GigabitEthernet1/0": {
+            "GigabitEthernet0/0": {
                 "ip address": "10.1.2.2",
                 "mask": "255.255.255.0",
                 "ospf": 10,
@@ -516,330 +319,8 @@
                 "negotiation auto": true,
                 "mpls": "ip"
             },
-            "GigabitEthernet2/0": {
-                "ip address": "10.102.2.2",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            },
-            "GigabitEthernet3/0": {
-                "ip address": "10.104.2.2",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            }
-        },
-        "router ospf": {
-            "process": 10,
-            "router id": "5.5.5.5",
-            "passive": []
-        },
-        "router bgp": {
-            "neighbors": [
-                {
-                    "ip": "2.2.2.2",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "4.4.4.4",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "7.7.7.7",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "8.8.8.8",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "9.9.9.9",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "10.10.10.10",
-                    "area": 100,
-                    "loopback": true
-                }
-            ],
-            "address_family": [],
-            "area": "100",
-            "router_id": "not defined"
-        },
-        "access list": [],
-        "community_list": [],
-        "route map": []
-    },
-    "P3": {
-        "name": "P3",
-        "number": 6,
-        "router_type": "not defined",
-        "neighbors": [
-            "P1",
-            "PE3"
-        ],
-        "connect type": {},
-        "interfaces": {
-            "Loopback0": {
-                "ip address": "6.6.6.6",
-                "mask": "255.255.255.255",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": "not defined",
-                "mpls": "not defined"
-            },
             "GigabitEthernet1/0": {
-                "ip address": "10.1.3.2",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            },
-            "GigabitEthernet2/0": {
-                "ip address": "10.103.3.2",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            }
-        },
-        "router ospf": {
-            "process": 10,
-            "router id": "6.6.6.6",
-            "passive": []
-        },
-        "router bgp": {
-            "neighbors": [
-                {
-                    "ip": "2.2.2.2",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "4.4.4.4",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "5.5.5.5",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "7.7.7.7",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "8.8.8.8",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "9.9.9.9",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "10.10.10.10",
-                    "area": 100,
-                    "loopback": true
-                }
-            ],
-            "address_family": [],
-            "area": "100",
-            "router_id": "not defined"
-        },
-        "access list": [],
-        "community_list": [],
-        "route map": []
-    },
-    "PE5": {
-        "name": "PE5",
-        "number": 7,
-        "router_type": "not defined",
-        "neighbors": [
-            "P1"
-        ],
-        "connect type": {},
-        "interfaces": {
-            "Loopback0": {
-                "ip address": "7.7.7.7",
-                "mask": "255.255.255.255",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": "not defined",
-                "mpls": "not defined"
-            },
-            "GigabitEthernet1/0": {
-                "ip address": "10.105.1.1",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            }
-        },
-        "router ospf": {
-            "process": 10,
-            "router id": "7.7.7.7",
-            "passive": []
-        },
-        "router bgp": {
-            "neighbors": [
-                {
-                    "ip": "2.2.2.2",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "4.4.4.4",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "5.5.5.5",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "8.8.8.8",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "9.9.9.9",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "10.10.10.10",
-                    "area": 100,
-                    "loopback": true
-                }
-            ],
-            "address_family": [
-                {
-                    "ip": "2.2.2.2",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "4.4.4.4",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "5.5.5.5",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "8.8.8.8",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "9.9.9.9",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "10.10.10.10",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                }
-            ],
-            "area": "100",
-            "router_id": "7.7.7.7"
-        },
-        "access list": [],
-        "community_list": [
-            {
-                "name": 1,
-                "number": 6553700
-            },
-            {
-                "name": 2,
-                "number": 6553800
-            },
-            {
-                "name": 3,
-                "number": 6553900
-            }
-        ],
-        "route map": []
-    },
-    "PE2": {
-        "name": "PE2",
-        "number": 8,
-        "router_type": "not defined",
-        "neighbors": [
-            "P2",
-            "CE2"
-        ],
-        "connect type": {
-            "CE2": "provider"
-        },
-        "interfaces": {
-            "Loopback0": {
-                "ip address": "8.8.8.8",
-                "mask": "255.255.255.255",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": "not defined",
-                "mpls": "not defined"
-            },
-            "GigabitEthernet1/0": {
-                "ip address": "10.102.2.1",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            },
-            "GigabitEthernet2/0": {
-                "ip address": "172.168.2.2",
+                "ip address": "172.168.2.1",
                 "mask": "255.255.255.0",
                 "ospf": 10,
                 "area": 0,
@@ -849,9 +330,9 @@
         },
         "router ospf": {
             "process": 10,
-            "router id": "8.8.8.8",
+            "router id": "4.4.4.4",
             "passive": [
-                "GigabitEthernet2/0"
+                "GigabitEthernet1/0"
             ]
         },
         "router bgp": {
@@ -862,37 +343,12 @@
                     "loopback": true
                 },
                 {
-                    "ip": "4.4.4.4",
+                    "ip": "3.3.3.3",
                     "area": 100,
                     "loopback": true
                 },
                 {
-                    "ip": "5.5.5.5",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "7.7.7.7",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "9.9.9.9",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "10.10.10.10",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "172.168.2.1",
+                    "ip": "172.168.2.2",
                     "area": "102",
                     "loopback": false
                 }
@@ -906,56 +362,21 @@
                     "status": false
                 },
                 {
-                    "ip": "4.4.4.4",
+                    "ip": "3.3.3.3",
                     "activate": true,
                     "send-community": true,
                     "route map": null,
                     "status": false
                 },
                 {
-                    "ip": "5.5.5.5",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "7.7.7.7",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "9.9.9.9",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "10.10.10.10",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "172.168.2.0",
+                    "ip": "172.168.2.2",
                     "activate": false,
                     "send-community": false,
                     "route map": "RM_2",
                     "status": "in"
                 },
                 {
-                    "ip": "172.168.2.0",
+                    "ip": "172.168.2.2",
                     "activate": false,
                     "send-community": false,
                     "route map": "RMout_2",
@@ -963,7 +384,7 @@
                 }
             ],
             "area": "100",
-            "router_id": "8.8.8.8"
+            "router_id": "4.4.4.4"
         },
         "access list": [
             {
@@ -1008,418 +429,24 @@
             }
         ]
     },
-    "PE4": {
-        "name": "PE4",
-        "number": 9,
-        "router_type": "not defined",
-        "neighbors": [
-            "P2",
-            "CE4"
-        ],
-        "connect type": {
-            "CE4": "client"
-        },
-        "interfaces": {
-            "Loopback0": {
-                "ip address": "9.9.9.9",
-                "mask": "255.255.255.255",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": "not defined",
-                "mpls": "not defined"
-            },
-            "GigabitEthernet1/0": {
-                "ip address": "10.104.2.1",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            },
-            "GigabitEthernet2/0": {
-                "ip address": "172.168.4.2",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "not defined"
-            }
-        },
-        "router ospf": {
-            "process": 10,
-            "router id": "9.9.9.9",
-            "passive": [
-                "GigabitEthernet2/0"
-            ]
-        },
-        "router bgp": {
-            "neighbors": [
-                {
-                    "ip": "2.2.2.2",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "4.4.4.4",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "5.5.5.5",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "7.7.7.7",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "8.8.8.8",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "10.10.10.10",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "172.168.4.1",
-                    "area": "104",
-                    "loopback": false
-                }
-            ],
-            "address_family": [
-                {
-                    "ip": "2.2.2.2",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "4.4.4.4",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "5.5.5.5",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "7.7.7.7",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "8.8.8.8",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "10.10.10.10",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "172.168.4.0",
-                    "activate": false,
-                    "send-community": false,
-                    "route map": "RM_4",
-                    "status": "in"
-                },
-                {
-                    "ip": "172.168.4.0",
-                    "activate": false,
-                    "send-community": false,
-                    "route map": "RMout_4",
-                    "status": "out"
-                }
-            ],
-            "area": "100",
-            "router_id": "9.9.9.9"
-        },
-        "access list": [
-            {
-                "name": 4,
-                "permit": [
-                    "192.168.4.0 0.0.0.255"
-                ]
-            }
-        ],
-        "community_list": [
-            {
-                "name": 1,
-                "number": 6553700
-            },
-            {
-                "name": 2,
-                "number": 6553800
-            },
-            {
-                "name": 3,
-                "number": 6553900
-            }
-        ],
-        "route map": [
-            {
-                "name": "RM_4",
-                "process": 10,
-                "access-list": 4,
-                "local_preference": 150,
-                "community": 6553700,
-                "match_community": []
-            },
-            {
-                "name": "RMout_4",
-                "process": 20,
-                "access-list": "not defined",
-                "local_preference": "not defined",
-                "community": "not defined",
-                "match_community": [
-                    1,
-                    2,
-                    3
-                ]
-            }
-        ]
-    },
-    "PE3": {
-        "name": "PE3",
-        "number": 10,
-        "router_type": "not defined",
-        "neighbors": [
-            "P3",
-            "CE3"
-        ],
-        "connect type": {
-            "CE3": "client"
-        },
-        "interfaces": {
-            "Loopback0": {
-                "ip address": "10.10.10.10",
-                "mask": "255.255.255.255",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": "not defined",
-                "mpls": "ip"
-            },
-            "GigabitEthernet1/0": {
-                "ip address": "10.103.3.1",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "ip"
-            },
-            "GigabitEthernet2/0": {
-                "ip address": "172.168.3.2",
-                "mask": "255.255.255.0",
-                "ospf": 10,
-                "area": 0,
-                "negotiation auto": true,
-                "mpls": "not defined"
-            }
-        },
-        "router ospf": {
-            "process": 10,
-            "router id": "10.10.10.10",
-            "passive": [
-                "GigabitEthernet2/0"
-            ]
-        },
-        "router bgp": {
-            "neighbors": [
-                {
-                    "ip": "2.2.2.2",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "4.4.4.4",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "5.5.5.5",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "7.7.7.7",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "8.8.8.8",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "9.9.9.9",
-                    "area": 100,
-                    "loopback": true
-                },
-                {
-                    "ip": "172.168.3.1",
-                    "area": "103",
-                    "loopback": false
-                }
-            ],
-            "address_family": [
-                {
-                    "ip": "2.2.2.2",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "4.4.4.4",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "5.5.5.5",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "6.6.6.6",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "7.7.7.7",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "8.8.8.8",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "9.9.9.9",
-                    "activate": true,
-                    "send-community": true,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "172.168.3.0",
-                    "activate": false,
-                    "send-community": false,
-                    "route map": "RM_3",
-                    "status": "in"
-                },
-                {
-                    "ip": "172.168.3.0",
-                    "activate": false,
-                    "send-community": false,
-                    "route map": "RMout_3",
-                    "status": "out"
-                }
-            ],
-            "area": "100",
-            "router_id": "10.10.10.10"
-        },
-        "access list": [
-            {
-                "name": 3,
-                "permit": [
-                    "192.168.3.0 0.0.0.255"
-                ]
-            }
-        ],
-        "community_list": [
-            {
-                "name": 1,
-                "number": 6553700
-            },
-            {
-                "name": 2,
-                "number": 6553800
-            },
-            {
-                "name": 3,
-                "number": 6553900
-            }
-        ],
-        "route map": [
-            {
-                "name": "RM_3",
-                "process": 10,
-                "access-list": 3,
-                "local_preference": 150,
-                "community": 6553700,
-                "match_community": []
-            },
-            {
-                "name": "RMout_3",
-                "process": 20,
-                "access-list": "not defined",
-                "local_preference": "not defined",
-                "community": "not defined",
-                "match_community": [
-                    1,
-                    2,
-                    3
-                ]
-            }
-        ]
-    },
     "CE2": {
         "name": "CE2",
-        "number": 11,
+        "number": 5,
         "router_type": "none",
-        "neighbors": [
-            "PE2",
-            "PC2"
-        ],
+        "neighbors": {
+            "PE2": {
+                "port": "GE1",
+                "ip": "172.168.2.2"
+            },
+            "PC2": {
+                "port": "GE0",
+                "ip": "192.168.2.1"
+            }
+        },
         "connect type": {},
         "interfaces": {
             "Loopback0": {
-                "ip address": "11.11.11.11",
+                "ip address": "5.5.5.5",
                 "mask": "255.255.255.255",
                 "ospf": "not defined",
                 "area": "not defined",
@@ -1427,183 +454,49 @@
                 "mpls": "not defined"
             },
             "GigabitEthernet1/0": {
+                "ip address": "172.168.2.2",
+                "mask": "255.255.255.0",
+                "ospf": "not defined",
+                "area": "not defined",
+                "negotiation auto": true,
+                "mpls": "not defined"
+            },
+            "GigabitEthernet0/0": {
                 "ip address": "192.168.2.1",
                 "mask": "255.255.255.0",
                 "ospf": "not defined",
                 "area": "not defined",
                 "negotiation auto": true,
                 "mpls": "not defined"
-            },
-            "GigabitEthernet2/0": {
-                "ip address": "172.16.2.1",
-                "mask": "255.255.255.0",
-                "ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": true,
-                "mpls": "not defined"
             }
         },
         "router ospf": {},
         "router bgp": {
             "neighbors": [
                 {
-                    "ip": "172.168.2.2",
+                    "ip": "172.168.2.1",
                     "area": "2",
                     "loopback": false
                 }
             ],
             "address_family": [
                 {
-                    "ip": "192.168.2.0",
-                    "activate": false,
+                    "ip": "172.168.2.1",
+                    "activate": true,
                     "send-community": false,
                     "route map": null,
                     "status": false
                 },
                 {
-                    "ip": "172.168.2.2",
-                    "activate": true,
+                    "ip": "192.168.2.0",
+                    "activate": false,
                     "send-community": false,
                     "route map": null,
                     "status": false
                 }
             ],
             "area": "102",
-            "router_id": "11.11.11.11"
-        },
-        "access list": [],
-        "community_list": [],
-        "route map": []
-    },
-    "CE3": {
-        "name": "CE3",
-        "number": 12,
-        "router_type": "none",
-        "neighbors": [
-            "PE3",
-            "PC3"
-        ],
-        "connect type": {},
-        "interfaces": {
-            "Loopback0": {
-                "ip address": "12.12.12.12",
-                "mask": "255.255.255.255",
-                "ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined",
-                "mpls": "not defined"
-            },
-            "GigabitEthernet1/0": {
-                "ip address": "192.168.3.1",
-                "mask": "255.255.255.0",
-                "ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": true,
-                "mpls": "not defined"
-            },
-            "GigabitEthernet2/0": {
-                "ip address": "172.16.3.1",
-                "mask": "255.255.255.0",
-                "ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": true,
-                "mpls": "not defined"
-            }
-        },
-        "router ospf": {},
-        "router bgp": {
-            "neighbors": [
-                {
-                    "ip": "172.168.3.2",
-                    "area": "3",
-                    "loopback": false
-                }
-            ],
-            "address_family": [
-                {
-                    "ip": "192.168.3.0",
-                    "activate": false,
-                    "send-community": false,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "172.168.3.2",
-                    "activate": true,
-                    "send-community": false,
-                    "route map": null,
-                    "status": false
-                }
-            ],
-            "area": "103",
-            "router_id": "12.12.12.12"
-        },
-        "access list": [],
-        "community_list": [],
-        "route map": []
-    },
-    "CE4": {
-        "name": "CE4",
-        "number": 13,
-        "router_type": "none",
-        "neighbors": [
-            "PE4",
-            "PC4"
-        ],
-        "connect type": {},
-        "interfaces": {
-            "Loopback0": {
-                "ip address": "13.13.13.13",
-                "mask": "255.255.255.255",
-                "ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": "not defined",
-                "mpls": "not defined"
-            },
-            "GigabitEthernet1/0": {
-                "ip address": "192.168.4.1",
-                "mask": "255.255.255.0",
-                "ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": true,
-                "mpls": "not defined"
-            },
-            "GigabitEthernet2/0": {
-                "ip address": "172.16.4.1",
-                "mask": "255.255.255.0",
-                "ospf": "not defined",
-                "area": "not defined",
-                "negotiation auto": true,
-                "mpls": "not defined"
-            }
-        },
-        "router ospf": {},
-        "router bgp": {
-            "neighbors": [
-                {
-                    "ip": "172.168.4.2",
-                    "area": "4",
-                    "loopback": false
-                }
-            ],
-            "address_family": [
-                {
-                    "ip": "192.168.4.0",
-                    "activate": false,
-                    "send-community": false,
-                    "route map": null,
-                    "status": false
-                },
-                {
-                    "ip": "172.168.4.2",
-                    "activate": true,
-                    "send-community": false,
-                    "route map": null,
-                    "status": false
-                }
-            ],
-            "area": "104",
-            "router_id": "13.13.13.13"
+            "router_id": "5.5.5.5"
         },
         "access list": [],
         "community_list": [],
@@ -1612,9 +505,9 @@
 }!{
     "PC1": {
         "pcname": "PC1",
-        "router": "CE1",
-        "ip": "192.168.1.1",
-        "gateway": "192.168.1.1",
+        "router": "GE0",
+        "ip": "192.168.0.1",
+        "gateway": "192.168.0.1",
         "mask": "255.255.255.0"
     },
     "PC2": {
@@ -1622,20 +515,6 @@
         "router": "CE2",
         "ip": "192.168.2.2",
         "gateway": "192.168.2.1",
-        "mask": "255.255.255.0"
-    },
-    "PC3": {
-        "pcname": "PC3",
-        "router": "CE3",
-        "ip": "192.168.3.3",
-        "gateway": "192.168.3.1",
-        "mask": "255.255.255.0"
-    },
-    "PC4": {
-        "pcname": "PC4",
-        "router": "CE4",
-        "ip": "192.168.4.4",
-        "gateway": "192.168.4.1",
         "mask": "255.255.255.0"
     }
 }

@@ -11,53 +11,27 @@ def define_port(noeud):
 	noeud.interfaces[port.port] = port
 	
 	#Define other ports
-	n_port = 1
 	if noeud.name[:2] == 'CE':
-		#Between PC and CE
-		port = Interface('GigabitEthernet%d/0' %n_port)
-		n_port = n_port + 1
-		port.ip_address = '192.168.%s.1' % noeud.name[2:]
-		port.mask = '255.255.255.0'
-		port.negotiation_auto = True
-		noeud.interfaces[port.port] = port
-
-		#Between CE and PE
-		port = Interface('GigabitEthernet%d/0' %n_port)
-		n_port = n_port + 1
-		port.ip_address = '172.16.%s.1' % noeud.name[2:]
-		port.mask = '255.255.255.0'
-		port.negotiation_auto = True
-		noeud.interfaces[port.port] = port
+		flag = 0
+		for neighbor in noeud.neighbors.keys():
+			if neighbor[:2] == 'PC' and flag == 0:
+				flag = 1
+				port = Interface('GigabitEthernet%s/0' %noeud.neighbors[neighbor]['port'][2:])
+				port.ip_address =  '%s' %noeud.neighbors[neighbor]['ip']
+				port.mask = '255.255.255.0'
+				port.negotiation_auto = True
+				noeud.interfaces[port.port] = port
+			elif neighbor[:2] != 'PC':
+				port = Interface('GigabitEthernet%s/0' %noeud.neighbors[neighbor]['port'][2:])
+				port.ip_address = '%s' %noeud.neighbors[neighbor]['ip']
+				port.mask = '255.255.255.0'
+				port.negotiation_auto = True
+				noeud.interfaces[port.port] = port
 		
 	else:
-		for neighbor in noeud.neighbors:
-			port = Interface('GigabitEthernet%d/0'%n_port)
-			n_port = n_port+1
-			if noeud.name[:2] == 'PE' or noeud.name[:2] == 'CE':
-				num_noeud = int(noeud.name[2:])
-			else:
-				num_noeud = int(noeud.name[1:])
-			if neighbor[:2] == 'PE' or neighbor[:2] == 'CE':
-				num_neighbor = int(neighbor[2:])
-			else:
-				num_neighbor = int(neighbor[1:])
-
-			if neighbor[:2] == 'CE':
-				port.ip_address = '172.168.%s.2' % neighbor[2:]
-			elif noeud.name[:2] == 'PE' and neighbor[:2] == 'PE':
-				if num_noeud < num_neighbor:
-					port.ip_address = '10.1%.2d.1%.2d.1' %(num_noeud,num_neighbor)
-				else:
-					port.ip_address = '10.1%.2d.1%.2d.2' %(num_neighbor,num_noeud)
-			elif noeud.name[:2] == 'PE':
-				port.ip_address = '10.1%.2d.%d.1' %(num_noeud,num_neighbor)
-			elif neighbor[:2] == 'PE':
-				port.ip_address = '10.1%.2d.%d.2' %(num_neighbor,num_noeud)
-			else:
-				if num_noeud < num_neighbor:
-					port.ip_address = '10.%d.%d.1' %(num_noeud,num_neighbor)
-				else:
-					port.ip_address = '10.%d.%d.2' %(num_neighbor,num_noeud)
+		for neighbor in noeud.neighbors.keys():
+			port = Interface('GigabitEthernet%s/0'%noeud.neighbors[neighbor]['port'][2:])
+			port.ip_address = '%s' %noeud.neighbors[neighbor]['ip']
 			port.mask = '255.255.255.0'
 			port.negotiation_auto = True
 			noeud.interfaces[port.port] = port
@@ -89,9 +63,14 @@ def define_bgp(noeuds):
 			bgp.area = '1%.2d' %int(noeuds[noeud].name[2:])
 			num = noeuds[noeud].number
 			bgp.router_id = '%d.%d.%d.%d' %(num,num,num,num)
-			bgp.add_neighbor('172.168.%s.2' %noeuds[noeud].name[2:], '%d' %int(noeuds[noeud].name[2:]), False)
-			bgp.add_family('192.168.%s.0' %noeuds[noeud].name[2:], False, False, None,False)
-			bgp.add_family('172.168.%s.2' %noeuds[noeud].name[2:], True, False, None,False)
+			flag = 0
+			for n in noeuds[noeud].neighbors.keys():
+				if n[:2] == 'PC' and flag ==0:
+					flag = 1
+					bgp.add_family('192.168.%s.0' %noeuds[noeud].name[2:], False, False, None,False)
+				elif n[:2] != 'PC':
+					bgp.add_neighbor('%s' %noeuds[n].neighbors[noeud]['ip'], '%d' %int(noeuds[n].name[2:]), False)	
+					bgp.add_family('%s' %noeuds[n].neighbors[noeud]['ip'], True, False, None,False)
 			noeuds[noeud].router_bgp = bgp
 		elif noeuds[noeud].name[:2] == 'PE':
 			bgp = BGP()
@@ -108,9 +87,9 @@ def define_bgp(noeuds):
 					num = noeuds[n].number
 					bgp.add_neighbor('%d.%d.%d.%d' %(num,num,num,num), 100, True)
 					bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, True, None,False)
-				elif n in noeuds[noeud].neighbors and noeuds[n].name != noeuds[noeud].name:
+				elif n in noeuds[noeud].neighbors.keys() and noeuds[n].name != noeuds[noeud].name:
 					num = noeuds[n].name[2:]
-					bgp.add_neighbor('172.168.%s.1' %n[2:], '1%.2d' %int(noeuds[noeud].name[2:]), False)
+					bgp.add_neighbor('%s' %noeuds[n].neighbors[noeud]['ip'], '1%.2d' %int(noeuds[n].name[2:]), False)
 					
 					routemap = RouteMap('RM_%s' %n[2:])
 					routemap.process = 10
@@ -132,7 +111,7 @@ def define_bgp(noeuds):
 							routemap.local_preference = 50
 							routemap.community = 6553900
 					noeuds[noeud].route_map.append(routemap)
-					bgp.add_family('172.168.%s.0' %n[2:], False, False, routemap.name,'in')
+					bgp.add_family('%s' %noeuds[n].neighbors[noeud]['ip'], False, False, routemap.name,'in')
 					
 			noeuds[noeud].router_bgp = bgp
 		else:
@@ -142,7 +121,6 @@ def define_bgp(noeuds):
 				if noeuds[n].name[:1] == 'P' and noeuds[n].name != noeuds[noeud].name:
 					num = noeuds[n].number
 					bgp.add_neighbor('%d.%d.%d.%d' %(num,num,num,num), 100, True)
-					#bgp.add_family('%d.%d.%d.%d' %(num,num,num,num), True, None)
 			noeuds[noeud].router_bgp = bgp
 	return noeuds
 
@@ -173,7 +151,7 @@ def add_community_list(noeuds):
 				else:
 					routemap.match_community.append(1)
 				noeuds[key].route_map.append(routemap)
-				noeuds[key].router_bgp.add_family('172.168.%s.0' %k[2:], False, False, routemap.name,'out')
+				noeuds[key].router_bgp.add_family('%s' %noeuds[k].neighbors[key]['ip'], False, False, routemap.name,'out')
 	return noeuds
 		
 				

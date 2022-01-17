@@ -1,17 +1,7 @@
-PC1 CE1 none
-CE1 PE1 peer
-CE5 PE1 provider
-PE1 P1 none
-P1 P2 none
-P1 P3 none
-P1 PE5 none
-P2 PE2 none
-P2 PE4 none
-P3 PE3 none
-PE2 CE2 provider
-CE2 PC2 none
-PE3 CE3 client
-CE3 PC3 none
-PE4 CE4 client
-CE4 PC4 none
+PC1 GE0 192.168.1.2 CE1 GE0 192.168.1.1 none
+CE1 GE1 172.168.1.1 PE1 GE0 172.168.1.2 client
+PE1 GE1 10.1.1.1 P1 GE0 10.1.1.2 none
+P1 GE1 10.1.2.1 PE2 GE0 10.1.2.2 none
+PE2 GE1 172.168.2.1 CE2 GE1 172.168.2.2 provider
+CE2 GE0 192.168.2.1 PC2 GE0 192.168.2.2 none
 
