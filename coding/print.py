@@ -12,7 +12,7 @@ pcs = json.loads(noeuds[1])
 for router_key in routers.keys():
 	router = routers[router_key]
 	fc = open('./config/%s_startup_config.cfg' %router['name'],'w')
-	fc.write('!\n\n!\n')
+	fc.write('!\n!\n!\n!\n\n!\n')
 	fc.write('version 15.2\n')
 	fc.write('service timestamps debug datetime msec\n')
 	fc.write('service timestamps log datetime msec\n!\n')
@@ -51,7 +51,7 @@ for router_key in routers.keys():
 		bgp = router['router bgp']
 		fc.write('router bgp %s\n' %bgp['area'])
 		fc.write(' bgp router-id %s\n' %bgp['router_id'])
-		fc.write(' bpg log-neighbor-changes\n')
+		fc.write(' bgp log-neighbor-changes\n')
 		for neighbor in bgp['neighbors']:
 			fc.write(' neighbor %s remote-as %s\n' %(neighbor['ip'],neighbor['area']))
 			if neighbor['loopback'] == True:
