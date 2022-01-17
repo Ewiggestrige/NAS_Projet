@@ -1,0 +1,50 @@
+Nov 26 15:42:26.649 HYPERVISOR: Release 0.2.21-amd64/Linux (tag 2019071212)
+Nov 26 15:42:26.649 HYPERVISOR: Started on IP = localhost, TCP port = 49233.
+Nov 26 15:42:26.662 HYPERVISOR: exec_cmd: hypervisor version 
+Nov 26 15:42:26.662 HYPERVISOR: exec_cmd: hypervisor working_dir /home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips 
+Nov 26 15:42:26.662 GENERAL: working_dir=/home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips
+Nov 26 15:42:26.663 HYPERVISOR: exec_cmd: hypervisor working_dir /home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips/990bf912-5f4b-45f5-99bd-6857f5e89129 
+Nov 26 15:42:26.664 GENERAL: working_dir=/home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips/990bf912-5f4b-45f5-99bd-6857f5e89129
+Nov 26 15:42:26.664 HYPERVISOR: exec_cmd: vm create P3 8 c7200 
+Nov 26 15:42:26.667 VM: VM P3 created.
+Nov 26 15:42:26.668 HYPERVISOR: exec_cmd: vm set_con_tcp_port P3 5007 
+Nov 26 15:42:26.669 HYPERVISOR: exec_cmd: c7200 get_mac_addr P3 
+Nov 26 15:42:26.669 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:42:26.670 HYPERVISOR: exec_cmd: vm slot_add_binding P3 0 0 C7200-IO-FE 
+Nov 26 15:42:26.671 HYPERVISOR: exec_cmd: vm set_disk0 P3 0 
+Nov 26 15:42:26.686 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:42:26.687 HYPERVISOR: exec_cmd: vm set_idle_pc P3 0x62cc90e4 
+Nov 26 15:42:26.690 HYPERVISOR: exec_cmd: vm set_ios P3 /home/yhliu/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Nov 26 15:42:26.690 HYPERVISOR: exec_cmd: c7200 set_mac_addr P3 ca08.4396.0000 
+Nov 26 15:42:26.691 HYPERVISOR: exec_cmd: vm set_nvram P3 512 
+Nov 26 15:42:26.692 HYPERVISOR: exec_cmd: vm set_ram P3 512 
+Nov 26 15:42:26.693 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:42:26.694 HYPERVISOR: exec_cmd: vm slot_add_binding P3 1 0 PA-GE 
+Nov 26 15:42:26.694 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:42:26.695 HYPERVISOR: exec_cmd: vm slot_add_binding P3 2 0 PA-GE 
+Nov 26 15:42:26.695 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:42:26.696 HYPERVISOR: exec_cmd: vm slot_add_binding P3 3 0 PA-GE 
+Nov 26 15:42:26.696 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:42:26.697 HYPERVISOR: exec_cmd: vm slot_add_binding P3 4 0 PA-GE 
+Nov 26 15:42:26.697 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:42:26.698 HYPERVISOR: exec_cmd: vm slot_add_binding P3 5 0 PA-GE 
+Nov 26 15:42:26.698 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:42:26.699 HYPERVISOR: exec_cmd: vm slot_add_binding P3 6 0 PA-GE 
+Nov 26 15:42:28.761 HYPERVISOR: exec_cmd: nio create_udp udp-5d336597-30d4-4214-ba68-4357ca5279e5 10034 127.0.0.1 10035 
+Nov 26 15:42:28.986 HYPERVISOR: exec_cmd: vm slot_add_nio_binding P3 4 0 udp-5d336597-30d4-4214-ba68-4357ca5279e5 
+Nov 26 15:42:28.987 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:42:29.050 HYPERVISOR: exec_cmd: nio create_udp udp-589c24e1-4140-4938-b648-ada24cfcf03a 10040 127.0.0.1 10041 
+Nov 26 15:42:29.050 HYPERVISOR: exec_cmd: vm slot_add_nio_binding P3 5 0 udp-589c24e1-4140-4938-b648-ada24cfcf03a 
+Nov 26 15:42:29.050 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:42:29.097 HYPERVISOR: exec_cmd: nio create_udp udp-613c172b-6ffe-458d-be03-81f964a4345b 10044 127.0.0.1 10045 
+Nov 26 15:42:29.098 HYPERVISOR: exec_cmd: vm slot_add_nio_binding P3 1 0 udp-613c172b-6ffe-458d-be03-81f964a4345b 
+Nov 26 15:42:29.098 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:43:09.113 HYPERVISOR: exec_cmd: vm set_ghost_status P3 2 
+Nov 26 15:43:09.119 HYPERVISOR: exec_cmd: vm set_ghost_file P3 /home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips/c7200-advipservicesk9-mz.152-4.S5.image-512.ghost 
+Nov 26 15:43:09.120 HYPERVISOR: exec_cmd: vm get_status P3 
+Nov 26 15:43:09.124 HYPERVISOR: exec_cmd: vm set_config P3 configs/i8_startup-config.cfg 
+Nov 26 15:43:09.138 HYPERVISOR: exec_cmd: vm start P3 
+Nov 26 15:43:39.353 HYPERVISOR: exec_cmd: vm extract_config P3 
+Nov 26 16:26:15.581 HYPERVISOR: exec_cmd: vm set_ghost_status P3 2 
+Nov 26 16:26:15.582 HYPERVISOR: exec_cmd: vm set_ghost_file P3 /home/yhliu/GNS3/projects/NAS_PROJECT/project-files/dynamips/c7200-advipservicesk9-mz.152-4.S5.image-512.ghost 
+Nov 26 16:26:15.582 HYPERVISOR: exec_cmd: vm get_status P3 
