@@ -69,7 +69,7 @@ def define_bgp(noeuds):
 					flag = 1
 					bgp.add_family('192.168.%s.0' %noeuds[noeud].name[2:], False, False, None,False)
 				elif n[:2] != 'PC':
-					bgp.add_neighbor('%s' %noeuds[n].neighbors[noeud]['ip'], '%d' %int(noeuds[n].name[2:]), False)	
+					bgp.add_neighbor('%s' %noeuds[n].neighbors[noeud]['ip'], 100, False)	
 					bgp.add_family('%s' %noeuds[n].neighbors[noeud]['ip'], True, False, None,False)
 			noeuds[noeud].router_bgp = bgp
 		elif noeuds[noeud].name[:2] == 'PE':
@@ -111,7 +111,7 @@ def define_bgp(noeuds):
 							routemap.local_preference = 50
 							routemap.community = 6553900
 					noeuds[noeud].route_map.append(routemap)
-					bgp.add_family('%s' %noeuds[n].neighbors[noeud]['ip'], False, False, routemap.name,'in')
+					bgp.add_family('%s' %noeuds[n].neighbors[noeud]['ip'], True, False, routemap.name,'in')
 					
 			noeuds[noeud].router_bgp = bgp
 		else:

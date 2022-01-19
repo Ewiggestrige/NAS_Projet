@@ -45,7 +45,7 @@
             "neighbors": [
                 {
                     "ip": "172.168.1.2",
-                    "area": "1",
+                    "area": 100,
                     "loopback": false
                 }
             ],
@@ -475,7 +475,7 @@
             "neighbors": [
                 {
                     "ip": "172.168.2.1",
-                    "area": "2",
+                    "area": 100,
                     "loopback": false
                 }
             ],

@@ -60,6 +60,8 @@ for router_key in routers.keys():
 			fc.write(' !\n')
 			fc.write(' address-family ipv4\n')
 		for address in bgp['address_family']:
+			if address['ip'][:3] == '192':
+				fc.write('  network %s\n' %address['ip'])
 			if address['activate'] == True:
 				fc.write('  neighbor %s activate\n' %address['ip'])
 			if address['send-community'] == True:
